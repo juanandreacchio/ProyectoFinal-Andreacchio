@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    background-color: aqua;
+}
+
+.principal {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "sidebar main main main"
+      "sidebar main main main"
+      "sidebar main main main";
+  }
+  
+  .sidebar { grid-area: sidebar; }
+  
+  .main { grid-area: main; }
+
+.productos > div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.img-producto img{
+    width: 80%;
+    height: 80%;
+}
+
+.producto{
+    width: 14vw;
+}
