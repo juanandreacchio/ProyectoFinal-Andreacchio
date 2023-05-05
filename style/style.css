@@ -3,7 +3,6 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-    background-color: aqua;
 }
 
 .principal {  display: grid;
@@ -27,11 +26,54 @@
     justify-content: flex-start;
 }
 
-.img-producto img{
+
+.img-producto{
+    text-align: center;
+    background-color: #C9C9C9;
+}
+
+p{
+    text-align: center;
+}
+
+.precio{
+    color: #B2A3B5;
+}
+
+.img-producto > img{
     width: 80%;
-    height: 80%;
+    box-sizing: content-box;
+    padding: 10px;
 }
 
 .producto{
-    width: 15vw;
+    width: 17vw;
+    border: 1px solid #A3A3A3;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-bottom:7px;
+    box-sizing: content-box;
+}
+
+.agregarCarrito{
+    padding: 4px 8px;
+    border-radius: 3px;
+    background-color: #424242;
+    color: white;
+    font-size: 13px;
+}
+
+label{
+    color: #8a7f8c;
+    text-align: center;
+}
+
+.precioYCarrito {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
