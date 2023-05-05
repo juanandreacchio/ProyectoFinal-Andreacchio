@@ -70,6 +70,8 @@ p{
 label{
     color: #8a7f8c;
     text-align: center;
+    padding: 0px 10px;
+    padding-top: 5px;
 }
 
 .precioYCarrito {
