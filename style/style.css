@@ -79,3 +79,15 @@ label{
     align-items: center;
     flex-direction: column;
 }
+
+.ingresoYRegistro{
+    display: flex;
+}
+
+.ingresoYRegistro > a{
+    margin-right: 8px;
+}
+
+#olvideContraseña{
+    padding: 0;
+}

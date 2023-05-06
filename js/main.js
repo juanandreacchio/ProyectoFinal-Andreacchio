@@ -1,11 +1,33 @@
 let pedidoFinalizado = false;
 let totalSinConvertir = 0;
+let esNuevo;
+
+let usuario = prompt('Ingrese su nombre de usuario');
+alert(`Bienvenido ${usuario}! Que disfrutes tu visita a la página`);
+let primeraVez = prompt('¿Es su primera vez en la página?');
+switch (primeraVez){
+    case 'si':
+        case 'Si':
+            esNuevo = true;
+            break;
+    case 'no':
+        case 'No':
+            esNuevo = false;
+            break;
+    default:
+        alert('Respuesta Inválida');
+        esnuevo = false;
+        break;
+}
 
 while (!pedidoFinalizado) {
     let infoProducto = prompt('Ingrese el nombre del producto'); 
     let precio = parseInt(prompt('Ingrese el precio del producto')); 
+    while (precio < 0){
+        precio = parseInt(prompt('Ingrese un precio valido')); 
+    }
     totalSinConvertir += precio;
-    alert(`El total hasta ahora es de: $${totalSinConvertir}`);
+    alert(`Producto agregado correctamente \nNombre: ${infoProducto}\nPrecio: $${precio}\nTotal: $${totalSinConvertir}`); 
     let finalizarPedido = prompt('¿Desea finalizar el pedido?');
     if (finalizarPedido == 'Si' || finalizarPedido == 'si') {
         pedidoFinalizado = true;
@@ -33,6 +55,12 @@ switch (divisa) {
         break;
 }
 
+if (esNuevo){
+    alert(`Por ser su primera compra le regalamos un descuento del 10%. En vez de valer ${signoDivisa}${totalConvertido},  su compra ahora vale vale: ${signoDivisa}${0.9 * totalConvertido}`);
+    totalConvertido = 0.9 * totalConvertido;
+}
+
+
 let deseaCuotas = prompt('¿Desea pagar con cuotas?');
 if (deseaCuotas == 'Si' || deseaCuotas == 'si') {
     let cuotas = parseInt(prompt('Ingrese en la cantidad de cuotas que desea pagar(3,6,12,24): '));
@@ -57,4 +85,5 @@ if (deseaCuotas == 'Si' || deseaCuotas == 'si') {
 else{
     alert(`El precio se pagará en un único pago de: ${signoDivisa}${totalConvertido}`);
 }
-alert('Gracias por comprar en DBYKits! Hasta la próxima');
+
+alert(`${usuario}, gracias por comprar en DBYShirts! Hasta la próxima`);
