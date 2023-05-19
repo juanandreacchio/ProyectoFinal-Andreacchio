@@ -20,19 +20,65 @@ switch (primeraVez){
         break;
 }
 
+function Producto(nombre,talle,precio){
+    this.nombre = nombre;
+    this.talle = talle;
+    this.precio = precio;
+}
+
+const carrito = [];
+
 while (!pedidoFinalizado) {
     let infoProducto = prompt('Ingrese el nombre del producto'); 
+    let talle = prompt('Ingrese el talle del producto');
     let precio = parseInt(prompt('Ingrese el precio del producto')); 
     while (precio < 0){
         precio = parseInt(prompt('Ingrese un precio valido')); 
     }
     totalSinConvertir += precio;
-    alert(`Producto agregado correctamente \nNombre: ${infoProducto}\nPrecio: $${precio}\nTotal: $${totalSinConvertir}`); 
+    carrito.push(new Producto(infoProducto,talle,precio));
+    alert(`Producto agregado correctamente!\nTotal acumulado: $${totalSinConvertir}`);
     let finalizarPedido = prompt('¿Desea finalizar el pedido?');
     if (finalizarPedido == 'Si' || finalizarPedido == 'si') {
         pedidoFinalizado = true;
     }
 }
+
+let n = 1
+while (n<carrito.length){
+    console.log(`Producto ${n}\nNombre: ${producto[n-1].nombre}\nTalle: ${producto[n-1].talle}\nPrecio: ${producto[n-1].precio}`);
+    n++;
+}
+
+let deseaEliminar = prompt('¿Desea eliminar un producto del carrito?');
+if (deseaEliminar == 'Si' || deseaEliminar == 'si'){
+    let metodoDeEliminacion = prompt('¿Desea eliminar el producto ingresando el nombre o por posicion en el carrito?');
+    if(metodoDeEliminacion == 'Nombre'){
+        let productoAEliminar = prompt('Nombre del producto a eliminar: ');
+        const nuevoArray = carrito.map( producto => producto.nombre)
+        let posicionAEliminar = nuevoArray.indexOf(productoAEliminar);
+        if (posicionAEliminar<0){
+            alert('El producto no se encuentra en el carrito');
+        }
+        else{
+            totalSinConvertir = totalSinConvertir - carrito[posicionAEliminar-1].precio;
+            carrito.splice(posicionAEliminar,1);
+            console.log("Producto eliminado correctamente!");
+        }
+    }
+    if(metodoDeEliminacion == 'Posicion'){
+        let posicionAEliminar = prompt('Ingrese la posicion del producto que desea eliminar(arrancando desde 1)');
+        while (posicionAEliminar <= 0 || posicionAEliminar>carrito.length){
+            posicionAEliminar = prompt('Ingrese una posicion válida');
+        }
+        totalSinConvertir = totalSinConvertir - carrito[posicionAEliminar-1].precio;
+        carrito.splice(posicionAEliminar-1,1);
+        console.log("Producto eliminado correctamente!");
+    }
+}
+
+
+
 
 let divisa = prompt('Ingrese la divisa con la que desea pagar(ARS, USD, EUR): ');
 while (divisa != 'ARS' && divisa != 'USD' && divisa != 'EUR') {
