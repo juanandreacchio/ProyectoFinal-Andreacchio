@@ -13,13 +13,50 @@ function obtenerPosicionPorNombre(carritoDeCompras,productoAEliminar) {
 function eliminarProductoPorPosicion(carritoDeCompras, posicion) {
     totalSinConvertir = totalSinConvertir - carritoDeCompras[posicion].precio
     carritoDeCompras.splice(posicion, 1);
-    return carritoDeCompras;
 }
 
 function mostrarCarrito(){
     for (let n = 0; n < carrito.length; n++) {
         console.log(`Producto ${n + 1}\nNombre: ${carrito[n].nombre}\nTalle: ${carrito[n].talle}\nPrecio: $${carrito[n].precio}`);
     }
+}
+
+function calcularCuotas(cuotas,precio){
+    let cuotaIndividual = Math.ceil(precio / cuotas);
+    return cuotaIndividual;
+}
+
+function ordenarCarrito(carritoAOrdenar,criterio){
+    switch(criterio){
+        case '1':
+            carritoAOrdenar.sort((a,b) => b.precio - a.precio);
+            break;
+        case '2':
+            carritoAOrdenar.sort((a,b) => a.precio - b.precio)
+            break;
+        case '3':
+            carritoAOrdenar.sort((a,b) =>{
+                if (a.nombre < b.nombre){
+                    return 1;
+                }
+                if (a.nombre> b.nombre){
+                    return -1;
+                }
+                return 0;
+            })
+            break;
+        case '4':
+            carritoAOrdenar.sort((a,b) =>{
+                if (a.nombre < b.nombre){
+                    return -1;
+                }
+                if (a.nombre> b.nombre){
+                    return 1;
+                }
+                return 0;
+            })
+            break;
+}
 }
 
 
@@ -70,39 +107,6 @@ while (!pedidoFinalizado) {
 
 mostrarCarrito();
 
-function ordenarCarrito(criterio){
-    switch(criterio){
-        case '1':
-            carrito.sort((a,b) => b.precio - a.precio);
-            break;
-        case '2':
-            carrito.sort((a,b) => a.precio - b.precio)
-            break;
-        case '3':
-            carrito.sort((a,b) =>{
-                if (a.nombre < b.nombre){
-                    return 1;
-                }
-                if (a.nombre> b.nombre){
-                    return -1;
-                }
-                return 0;
-            })
-            break;
-        case '4':
-            carrito.sort((a,b) =>{
-                if (a.nombre < b.nombre){
-                    return -1;
-                }
-                if (a.nombre> b.nombre){
-                    return 1;
-                }
-                return 0;
-            })
-            break;
-}
-}
-
 let deseaOrdenarSuCarrito = prompt('¿Desea ordenar su carrito?(S/N)')
 while (deseaOrdenarSuCarrito != 'n' && deseaOrdenarSuCarrito != 'N' && deseaOrdenarSuCarrito != 'S' && deseaOrdenarSuCarrito != 's') {
     deseaOrdenarSuCarrito = prompt('Ingrese una opción válida(S/N)');
@@ -112,7 +116,7 @@ while (deseaOrdenarSuCarrito == 'S' || deseaOrdenarSuCarrito == 's'){
     while (metodoDeOrdenamiento <1 && metodoDeOrdenamiento > 4){
         metodoDeOrdenamiento = prompt('Ingrese una opción válida:\n1.Precio (mayor a menor)\n2.Precio (menor a mayor)\n3.Orden alfabético (A-Z)\n4.Orden alfabético (Z-A)');
     }
-    ordenarCarrito(metodoDeOrdenamiento);
+    ordenarCarrito(carrito,metodoDeOrdenamiento);
     alert('Carrito ordenado correctamente!');
     mostrarCarrito();
     deseaOrdenarSuCarrito = prompt('¿Desea volver a ordenar su carrito?(S/N)');
@@ -158,7 +162,7 @@ if (deseaEliminar == 'S' || deseaEliminar == 's') {
 
 
 
-let divisa = prompt('Ingrese la divisa con la que desea pagar\n1.USD\n2.EUR\n3.ARS');
+let divisa = prompt('Ingrese la divisa con la que desea pagar\n1.USD\n2.ARS\n3.EUR');
 while (divisa != '1' && divisa != '2' && divisa != '3') {
     divisa = prompt('Ingrese una divisa válida: ');
 }
@@ -194,20 +198,8 @@ if (deseaCuotas == 'S' || deseaCuotas == 's') {
     while (cuotas != 3 && cuotas != 6 && cuotas != 12 && cuotas != 24) {
         cuotas = parseInt(prompt('Cantidad de cuotas inválida, estas solo pueden ser 3,6,12 o 24. Vuelva a ingresar la cantidad: '));
     }
-    switch (cuotas) {
-        case 3:
-            alert(`El pago se realizara en 3 cuotas de: ${signoDivisa}${Math.ceil(totalConvertido / 3)}`);
-            break;
-        case 6:
-            alert(`El pago se realizara en 6 cuotas de: ${signoDivisa}${Math.ceil(totalConvertido / 6)}`);
-            break;
-        case 12:
-            alert(`El pago se realizara en 12 cuotas de: ${signoDivisa}${Math.ceil(totalConvertido / 12)}`);
-            break;
-        case 24:
-            alert(`El pago se realizara en 24 cuotas de: ${signoDivisa}${Math.ceil(totalConvertido / 24)}`);
-            break;
-    }
+    let cuotaUnica = calcularCuotas(cuotas,totalConvertido);
+    alert(`El pago se realizará en ${cuotas} cuotas de ${signoDivisa}${cuotaUnica}`);
 }
 else {
     alert(`El precio se pagará en un único pago de: ${signoDivisa}${totalConvertido}`);
