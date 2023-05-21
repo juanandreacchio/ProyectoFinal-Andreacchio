@@ -1,3 +1,30 @@
+function Producto(nombre, talle, precio) {
+    this.nombre = nombre;
+    this.talle = talle;
+    this.precio = precio;
+}
+
+function obtenerPosicionPorNombre(carritoDeCompras,productoAEliminar) {
+    const nuevoArray = carritoDeCompras.map( producto => producto.nombre)
+    posicionAEliminar = nuevoArray.indexOf(productoAEliminar);
+    return posicionAEliminar;
+}
+
+function eliminarProductoPorPosicion(carritoDeCompras, posicion) {
+    totalSinConvertir = totalSinConvertir - carritoDeCompras[posicion].precio
+    carritoDeCompras.splice(posicion, 1);
+    return carritoDeCompras;
+}
+
+function mostrarCarrito(){
+    for (let n = 0; n < carrito.length; n++) {
+        console.log(`Producto ${n + 1}\nNombre: ${carrito[n].nombre}\nTalle: ${carrito[n].talle}\nPrecio: $${carrito[n].precio}`);
+    }
+}
+
+
+
+
 let pedidoFinalizado = false;
 let totalSinConvertir = 0;
 let esNuevo;
@@ -20,27 +47,20 @@ switch (primeraVez){
         break;
 }
 
-
-function Producto(nombre,talle,precio){
-    this.nombre = nombre;
-    this.talle = talle;
-    this.precio = precio;
-}
-
 const carrito = [];
 
 while (!pedidoFinalizado) {
-    let infoProducto = prompt('Ingrese el nombre del producto'); 
+    let infoProducto = prompt('Ingrese el nombre del producto');
     let talle = prompt('Ingrese el talle del producto');
-    let precio = parseInt(prompt('Ingrese el precio del producto')); 
-    while (precio < 0){
-        precio = parseInt(prompt('Ingrese un precio valido')); 
+    let precio = parseInt(prompt('Ingrese el precio del producto'));
+    while (precio < 0) {
+        precio = parseInt(prompt('Ingrese un precio valido'));
     }
     totalSinConvertir += precio;
-    carrito.push(new Producto(infoProducto,talle,precio));
+    carrito.push(new Producto(infoProducto, talle, precio));
     alert(`Producto agregado correctamente!\nTotal acumulado: $${totalSinConvertir}`);
     let finalizarPedido = prompt('¿Desea finalizar el pedido?(S/N)');
-    while (finalizarPedido != 'n' && finalizarPedido != 'N' && finalizarPedido != 'S' && finalizarPedido != 's' ){
+    while (finalizarPedido != 'n' && finalizarPedido != 'N' && finalizarPedido != 'S' && finalizarPedido != 's') {
         finalizarPedido = prompt('Ingrese una opción válida(S/N)');
     }
     if (finalizarPedido == 'S' || finalizarPedido == 's') {
@@ -48,48 +68,91 @@ while (!pedidoFinalizado) {
     }
 }
 
+mostrarCarrito();
 
-for (let n=0;n<carrito.length;n++){
-    console.log(`Producto ${n+1}\nNombre: ${carrito[n].nombre}\nTalle: ${carrito[n].talle}\nPrecio: $${carrito[n].precio}`);
+function ordenarCarrito(criterio){
+    switch(criterio){
+        case '1':
+            carrito.sort((a,b) => b.precio - a.precio);
+            break;
+        case '2':
+            carrito.sort((a,b) => a.precio - b.precio)
+            break;
+        case '3':
+            carrito.sort((a,b) =>{
+                if (a.nombre < b.nombre){
+                    return 1;
+                }
+                if (a.nombre> b.nombre){
+                    return -1;
+                }
+                return 0;
+            })
+            break;
+        case '4':
+            carrito.sort((a,b) =>{
+                if (a.nombre < b.nombre){
+                    return -1;
+                }
+                if (a.nombre> b.nombre){
+                    return 1;
+                }
+                return 0;
+            })
+            break;
 }
+}
+
+let deseaOrdenarSuCarrito = prompt('¿Desea ordenar su carrito?(S/N)')
+while (deseaOrdenarSuCarrito != 'n' && deseaOrdenarSuCarrito != 'N' && deseaOrdenarSuCarrito != 'S' && deseaOrdenarSuCarrito != 's') {
+    deseaOrdenarSuCarrito = prompt('Ingrese una opción válida(S/N)');
+}
+while (deseaOrdenarSuCarrito == 'S' || deseaOrdenarSuCarrito == 's'){
+    let metodoDeOrdenamiento = prompt('Elija el método de ordenamiento:\n1.Precio (mayor a menor)\n2.Precio (menor a mayor)\n3.Orden alfabético (A-Z)\n4.Orden alfabético (Z-A)');
+    while (metodoDeOrdenamiento <1 && metodoDeOrdenamiento > 4){
+        metodoDeOrdenamiento = prompt('Ingrese una opción válida:\n1.Precio (mayor a menor)\n2.Precio (menor a mayor)\n3.Orden alfabético (Z-A)\n4.Orden alfabético (A-Z)');
+    }
+    ordenarCarrito(metodoDeOrdenamiento);
+    alert('Carrito ordenado correctamente!');
+    mostrarCarrito();
+    deseaOrdenarSuCarrito = prompt('¿Desea volver a ordenar su carrito?(S/N)');
+}
+
 
 let posicionAEliminar;
 let deseaEliminar = prompt('¿Desea eliminar un producto del carrito?(S/N)');
-while (deseaEliminar != 'n' && deseaEliminar != 'N' && deseaEliminar != 'S' && deseaEliminar != 's' ){
+while (deseaEliminar != 'n' && deseaEliminar != 'N' && deseaEliminar != 'S' && deseaEliminar != 's') {
     deseaEliminar = prompt('Ingrese una opción válida(S/N)');
 }
-if (deseaEliminar == 'S' || deseaEliminar == 's'){
+if (deseaEliminar == 'S' || deseaEliminar == 's') {
     let metodoDeEliminacion = prompt('¿Desea eliminar el producto ingresando el nombre o por posicion en el carrito?\n1.Nombre\n2.Posicion\n3.Volver');
-    while (metodoDeEliminacion != '1' && metodoDeEliminacion != '2' && metodoDeEliminacion != '3'){
+    while (metodoDeEliminacion != '1' && metodoDeEliminacion != '2' && metodoDeEliminacion != '3') {
         metodoDeEliminacion = prompt('Ingrese una opción válida\n1.Nombre\n2.Posicion\n3.Volver')
     }
-    switch (metodoDeEliminacion){
+    switch (metodoDeEliminacion) {
         case '1':
             let productoAEliminar = prompt('Nombre del producto a eliminar: ');
-            const nuevoArray = carrito.map( producto => producto.nombre)
-            posicionAEliminar = nuevoArray.indexOf(productoAEliminar);
+            posicionAEliminar = obtenerPosicionPorNombre(carrito,productoAEliminar);
             if (posicionAEliminar<0){
                 alert('El producto no se encuentra en el carrito');
             }
             else{
-                totalSinConvertir = totalSinConvertir - carrito[posicionAEliminar].precio;
-                carrito.splice(posicionAEliminar,1);
-                console.log("Producto eliminado correctamente!");
+            eliminarProductoPorPosicion(carrito, posicionAEliminar);
             }
             break;
         case '2':
-            posicionAEliminar = parseInt(prompt('Ingrese la posicion del producto que desea eliminar(arrancando desde 1)'));
-            while (posicionAEliminar <= 0 || posicionAEliminar>carrito.length){
-                posicionAEliminar = prompt('Ingrese una posicion válida');
+            posicionAEliminar = parseInt(prompt(`Ingrese la posicion del producto que desea eliminar (1-${carrito.length})`));
+            while (posicionAEliminar <= 0 || posicionAEliminar > carrito.length) {
+                posicionAEliminar = prompt(`Ingrese una posicion válida (1-${carrito.length})`);
             }
             posicionAEliminar = posicionAEliminar - 1;
-            totalSinConvertir = totalSinConvertir - carrito[posicionAEliminar].precio;
-            carrito.splice(posicionAEliminar,1);
+            eliminarProductoPorPosicion(carrito, posicionAEliminar);
+            console.log(carrito);
             console.log("Producto eliminado correctamente!");
         case '3':
             break;
     }
-    
+
 }
 
 
@@ -116,14 +179,14 @@ switch (divisa) {
         break;
 }
 
-if (esNuevo){
+if (esNuevo) {
     alert(`Por ser su primera compra le regalamos un descuento del 10%. En vez de valer ${signoDivisa}${totalConvertido},  su compra ahora vale vale: ${signoDivisa}${0.9 * totalConvertido}`);
     totalConvertido = 0.9 * totalConvertido;
 }
 
 
 let deseaCuotas = prompt('¿Desea pagar con cuotas?(S/N)');
-while (deseaCuotas != 'n' && deseaCuotas != 'N' && deseaCuotas != 'S' && deseaCuotas != 's' ){
+while (deseaCuotas != 'n' && deseaCuotas != 'N' && deseaCuotas != 'S' && deseaCuotas != 's') {
     deseaCuotas = prompt('Ingrese una opción válida(S/N)');
 }
 if (deseaCuotas == 'S' || deseaCuotas == 's') {
@@ -146,7 +209,7 @@ if (deseaCuotas == 'S' || deseaCuotas == 's') {
             break;
     }
 }
-else{
+else {
     alert(`El precio se pagará en un único pago de: ${signoDivisa}${totalConvertido}`);
 }
 
