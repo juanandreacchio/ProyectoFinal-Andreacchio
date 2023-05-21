@@ -110,7 +110,7 @@ while (deseaOrdenarSuCarrito != 'n' && deseaOrdenarSuCarrito != 'N' && deseaOrde
 while (deseaOrdenarSuCarrito == 'S' || deseaOrdenarSuCarrito == 's'){
     let metodoDeOrdenamiento = prompt('Elija el método de ordenamiento:\n1.Precio (mayor a menor)\n2.Precio (menor a mayor)\n3.Orden alfabético (A-Z)\n4.Orden alfabético (Z-A)');
     while (metodoDeOrdenamiento <1 && metodoDeOrdenamiento > 4){
-        metodoDeOrdenamiento = prompt('Ingrese una opción válida:\n1.Precio (mayor a menor)\n2.Precio (menor a mayor)\n3.Orden alfabético (Z-A)\n4.Orden alfabético (A-Z)');
+        metodoDeOrdenamiento = prompt('Ingrese una opción válida:\n1.Precio (mayor a menor)\n2.Precio (menor a mayor)\n3.Orden alfabético (A-Z)\n4.Orden alfabético (Z-A)');
     }
     ordenarCarrito(metodoDeOrdenamiento);
     alert('Carrito ordenado correctamente!');
