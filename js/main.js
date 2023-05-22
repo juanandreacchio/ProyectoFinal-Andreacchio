@@ -59,6 +59,14 @@ function ordenarCarrito(carritoAOrdenar,criterio){
 }
 }
 
+function dolarAEuro(precio){
+    return precio / 1.10
+}
+
+function dolarAPeso(precio){
+    return precio * 410;
+}
+
 
 
 
@@ -175,11 +183,11 @@ switch (divisa) {
         break;
     case '2':
         signoDivisa = 'ARS';
-        totalConvertido = totalSinConvertir * 410; //Precio dolar tarjeta a 4 de mayo de 2023
+        totalConvertido = dolarAPeso(totalSinConvertir);
         break;
     case '3':
         signoDivisa = '€';
-        totalConvertido = totalSinConvertir / 1.10;
+        totalConvertido = dolarAEuro(totalSinConvertir);
         break;
 }
 
@@ -202,7 +210,7 @@ if (deseaCuotas == 'S' || deseaCuotas == 's') {
     alert(`El pago se realizará en ${cuotas} cuotas de ${signoDivisa}${cuotaUnica}`);
 }
 else {
-    alert(`El precio se pagará en un único pago de: ${signoDivisa}${totalConvertido}`);
+    alert(`El total se pagará en un único pago de: ${signoDivisa}${totalConvertido}`);
 }
 
 alert(`${usuario}, gracias por comprar en DBYShirts! Hasta la próxima`);
