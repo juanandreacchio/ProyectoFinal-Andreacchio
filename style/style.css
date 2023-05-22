@@ -3,7 +3,14 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
 }
+
+body{
+    background-color: #36453B !important;
+}
+
+
 
 .principal {  display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -91,3 +98,117 @@ label{
 #olvideContraseña{
     padding: 0;
 }
+
+.registerBox{
+    width: 35%;
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hijo{
+    border: 6px solid #BDC8C9;
+    border-radius: 3px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.usuario > p ,
+.contrasenia > p {
+    color: #5B616A;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tituloUsuario,
+.tituloContrasenia{
+    margin-bottom: 0;
+    padding: 5px;
+}
+
+.contrasenia,
+.usuario{
+    width: 100%;
+}
+
+.tituloRegistro{
+    color: #5B616A;
+    font-weight: bold;
+}
+
+.enviarRegistro > input{
+    padding: 7px 15px;
+    background-color: #3C423E;
+    border: 3px solid #6f7b73;
+    color: white;
+    transition: all .3s;
+}
+
+.enviarRegistro > input:hover{
+    background-color: #343936;
+    border: 3px solid #474e4a;
+    color: rgb(166, 166, 166);
+}
+
+.enviarRegistro > input:active{
+    background-color: #1c1f1d;
+    border: 3px solid #2a2e2c;
+    color: rgb(86, 85, 85);
+}
+
+
+#olvideContrasenia > label{
+    color: #879C9E;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 10px;
+    transition: all .3s;
+}
+
+#olvideContrasenia:hover > label{
+    color: #5c696b;
+}
+
+#olvideContrasenia:active > label{
+    color: #3b4445;
+}
+
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+    background-color: #262A27;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: content-box;
+}
+
+footer > p{
+    color: white;
+    padding: 10px;
+    margin-bottom: 0 !important;
+}
+
+.redes > a{
+    margin-left: 8px;
+}
+
+.itemRed > i{
+    font-size: 30px;
+    color: #BDC8C9;
+    transition: all .3s;
+}
+
+.redes > a > i:hover{
+    color: white;
+}
+
+
+
