@@ -286,6 +286,17 @@ const productos = [
         precio: 88.99,
     },
     {
+        id: "Knicks-Azul-Barrett",
+        titulo: "Unisex New York Knicks RJ Barrett Nike Blue 2022/23 Swingman Jersey - Icon Edition",
+        imagen:
+            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683134605/CursoJS/camisetasNBA/knicksAzul_1_hwayhs.png",
+        categoria: {
+            nombre: "NBA",
+            id: "NBA",
+        },
+        precio: 119.99,
+    },
+    {
         id: "Bucks-Verde-Giannis",
         titulo: "Unisex Milwaukee Bucks Giannis Antetokounmpo Nike Hunter Green 2022/23 Swingman Jersey - Icon Edition",
         imagen:
@@ -609,6 +620,17 @@ const productos = [
         titulo: "Camiseta Red Bull Salzburg Local Authentic 2022/23",
         imagen:
             "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683163919/CursoJS/camisetasChampionsLeague/salzburgoLocal_h9iovg.png",
+        categoria: {
+            nombre: "Champions",
+            id: "Champions",
+        },
+        precio: 93.58,
+    },
+    {
+        id: "Sevilla",
+        titulo: "Camiseta Sevilla FC Local Authentic 2022/23",
+        imagen:
+            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683163919/CursoJS/camisetasChampionsLeague/sevillaLocal_bct5s1.png",
         categoria: {
             nombre: "Champions",
             id: "Champions",
@@ -1342,6 +1364,56 @@ const productos = [
         precio: 174.99,
     }
 ]
+
+/*
+                    <div class="producto">
+                        <div class="img-producto">
+                            <img src="https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683134072/CursoJS/camisetasNBA/sunsVioleta_xjocy0.png"
+                                alt="">
+                        </div>
+                        <div class="info-producto">
+                            <div class="nombre">
+                                <label for="">Unisex Phoenix Suns Kevin Durant Nike Purple 2022/23 Swingman Jersey -
+                                    Icon Edition</label>
+                            </div>
+                            <div class="precioYCarrito">
+                                <p>
+                                    <label class="precio">119.99</label>
+                                </p>
+                                <button class="agregarCarrito">Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+*/
+
+const contenedorProductos = document.querySelector('.productos');
+
+function cargarProductos(productosElegidos){
+    contenedorProductos.innerHTML="";
+    productosElegidos.forEach(producto =>{
+        const div = document.createElement('div');
+        div.classList.add('producto');
+        div.innerHTML= `
+        <div class="img-producto">
+        <img src="${producto.imagen}" alt="${producto.titulo}">
+    </div>
+    <div class="info-producto">
+        <div class="nombre">
+            <label for="">${producto.titulo}</label>
+        </div>
+        <div class="precioYCarrito">
+            <p>
+                <label class="precio">$${producto.precio}</label>
+            </p>
+            <button id="${producto.id}" class="agregarCarrito">Agregar al Carrito</button>
+        </div>
+    </div>
+        `
+        contenedorProductos.append(div);
+    })
+}
+
+cargarProductos(productos);
 
 function obtenerPosicionPorNombre(carritoDeCompras, productoAEliminar) {
     const nuevoArray = carritoDeCompras.map(producto => producto.nombre)

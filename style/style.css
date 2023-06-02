@@ -338,7 +338,7 @@ body.dark-mode .registerBox .hijo .enviarRegistro:hover>input {
     padding-left: 7px;
 }
 
-.productos>div {
+.productos{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -664,7 +664,6 @@ footer>p {
 }
 
 .main {
-    margin-top: 10px;
     width: 100%;
     height: 100%;
 }
