@@ -410,7 +410,7 @@ const productos = [
         id: "Borussia-Dortmund-Local",
         titulo: "Camiseta Borussia Dortmund Local Authentic 2022/23",
         imagen:
-            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683134072/CursoJS/camisetasNBA/grizzliesCeleste_de13ql.png",
+            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683163922/CursoJS/camisetasChampionsLeague/borussiaLocal_d55wzh.png",
         categoria: {
             nombre: "Champions",
             id: "Champions",
@@ -1202,7 +1202,7 @@ const productos = [
         id: "Chargers-Azul-Herbert",
         titulo: "Men's Los Angeles Chargers Justin Herbert Nike Navy Vapor Limited Jersey",
         imagen:
-            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683218842/CursoJS/camisetasNFL/newEnglandPatriotsAzul_c5oczj.png",
+            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683218842/CursoJS/camisetasNFL/losAngelesChargersAzul_ocxqmf.png",
         categoria: {
             nombre: "NFL",
             id: "NFL",
@@ -1415,6 +1415,8 @@ function cargarProductos(productosElegidos){
 
 cargarProductos(productos);
 
+
+
 function obtenerPosicionPorNombre(carritoDeCompras, productoAEliminar) {
     const nuevoArray = carritoDeCompras.map(producto => producto.nombre)
     posicionAEliminar = nuevoArray.indexOf(productoAEliminar);
@@ -1485,23 +1487,43 @@ const carrito = []
 
 
 
-const ojo = document.querySelector('.ojo');
-let formContraseña = document.querySelector('.formContrasenia')
-console.log(formContraseña.attributes.type);
-console.log(ojo.children);
-let puedoVerContraseña = false;
-ojo.addEventListener('click', function () {
-    if (!puedoVerContraseña) {
-        formContraseña.setAttribute("type", "text");
-        ojo.innerHTML = '<i class="fa-sharp fa-solid fa-eye-slash" style="width: 18px; height: 16px;"></i>';
-        puedoVerContraseña = true;
+let darkMode = localStorage.getItem('dark-mode');
+const botonCambiarMode = document.querySelector('.btnCambiarMode');
+console.log(botonCambiarMode);
+const bodyDoc = document.querySelector('body');
+
+function activarDarkMode(){
+    localStorage.setItem('dark-mode',"activado");
+    bodyDoc.classList.add('dark-mode');
+}
+
+function desactivarDarkMode(){
+    localStorage.setItem('dark-mode',"desactivado");
+    bodyDoc.classList.remove('dark-mode');
+}
+
+console.log(botonCambiarMode.innerHTML);
+
+if(darkMode === "activado"){
+    activarDarkMode();
+    botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
+}
+if(darkMode === "desactivado"){
+    desactivarDarkMode();
+    botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
+}
+
+botonCambiarMode.addEventListener('click', () =>{
+    darkMode = localStorage.getItem('dark-mode');
+    if(darkMode === "activado"){
+        desactivarDarkMode();
+        botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
     }
-    else {
-        formContraseña.setAttribute("type", "password");
-        ojo.innerHTML = '<i class="fa-solid fa-eye" ></i>';
-        puedoVerContraseña = false;
+    if(darkMode === "desactivado"){
+        activarDarkMode();
+        botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
     }
-})
+});
 
 const btnsAgregarCarrito = document.querySelectorAll('.agregarCarrito');
 console.log(btnsAgregarCarrito);

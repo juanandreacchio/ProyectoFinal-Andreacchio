@@ -28,7 +28,7 @@ body.dark-mode>nav.navJC .container-fluid a {
 }
 
 body.dark-mode>nav.navJC .container-fluid #navbarTogglerDemo02 ul li {
-    border: 3px solid #1E152A;
+    border: 2px solid transparent;
 }
 
 body.dark-mode>nav.navJC .container-fluid #navbarTogglerDemo02 ul li:hover {
@@ -149,7 +149,7 @@ nav.navJC {
 }
 
 nav.navJC .container-fluid #navbarTogglerDemo02 ul li {
-    border: 2px solid #41BBD9;
+    border: 2px solid transparent;
 }
 
 nav.navJC .container-fluid a,
@@ -402,7 +402,7 @@ p {
 
 .producto {
     width: 17vw;
-    border: 1px solid #A3A3A3;
+    border: 2px solid #A3A3A3;
     border-radius: 3px;
     display: flex;
     align-items: center;
