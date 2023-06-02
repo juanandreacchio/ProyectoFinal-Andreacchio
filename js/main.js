@@ -1492,6 +1492,18 @@ const botonCambiarMode = document.querySelector('.btnCambiarMode');
 console.log(botonCambiarMode);
 const bodyDoc = document.querySelector('body');
 
+if(!darkMode){
+    localStorage.setItem('dark-mode',"desactivado");
+}
+if(darkMode === "activado"){
+    activarDarkMode();
+    botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
+}
+if(darkMode === "desactivado"){
+    desactivarDarkMode();
+    botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
+}
+
 function activarDarkMode(){
     localStorage.setItem('dark-mode',"activado");
     bodyDoc.classList.add('dark-mode');
@@ -1504,14 +1516,7 @@ function desactivarDarkMode(){
 
 console.log(botonCambiarMode.innerHTML);
 
-if(darkMode === "activado"){
-    activarDarkMode();
-    botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
-}
-if(darkMode === "desactivado"){
-    desactivarDarkMode();
-    botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
-}
+
 
 botonCambiarMode.addEventListener('click', () =>{
     darkMode = localStorage.getItem('dark-mode');
