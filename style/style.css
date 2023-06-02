@@ -16,7 +16,7 @@ body {
 }
 
 body.dark-mode {
-    background-color: #7E5A9B !important;
+    background-color: #210B2C !important;
 }
 
 body.dark-mode>nav.navJC {
@@ -33,7 +33,7 @@ body.dark-mode>nav.navJC .container-fluid #navbarTogglerDemo02 ul li {
 
 body.dark-mode>nav.navJC .container-fluid #navbarTogglerDemo02 ul li:hover {
     background-color: #E3BCEF;
-    border-bottom: 3px solid #7E5A9B;
+    border-bottom: 2px solid #7E5A9B;
 }
 
 body.dark-mode>nav.navJC .container-fluid #navbarTogglerDemo02 ul li:hover a {
@@ -74,7 +74,7 @@ button:hover.btnSearch.dark-mode {
 }
 
 body.dark-mode .sidebar {
-    background-color: #63458A;
+    background-color: #4A2B5C;
 }
 
 body.dark-mode .sidebar .ligasYOrden .ligasSidebar .lista-categorias>li button {
@@ -82,17 +82,15 @@ body.dark-mode .sidebar .ligasYOrden .ligasSidebar .lista-categorias>li button {
 }
 
 body.dark-mode .sidebar .ligasYOrden .ligasSidebar .lista-categorias>li button.active {
-    color: #1E152A;
-    background-color: #7E5A9B;
+    background-color: #210B2C;
 }
 
 body.dark-mode .sidebar .ligasYOrden .ligasSidebar .lista-categorias>li button:hover {
-    color: #1E152A;
-    background-color: #7E5A9B;
+    background-color: #210B2C;
 }
 
 body.dark-mode .principal .productos .producto {
-    border: 2px solid #E4B7E5;
+    border: 2px solid #613DC1;
 }
 
 body.dark-mode .principal .productos .producto:hover {
@@ -100,11 +98,11 @@ body.dark-mode .principal .productos .producto:hover {
 }
 
 body.dark-mode .principal .productos .producto .img-producto {
-    background-color: #3D2A55;
+    background-color: #1A1423;
 }
 
 body.dark-mode .principal .productos .producto .info-producto {
-    background-color: #63458A;
+    background-color: black;
 }
 
 body.dark-mode .principal .productos .producto .info-producto .nombre label {
@@ -117,8 +115,8 @@ body.dark-mode .principal .productos .producto .info-producto .precioYCarrito p 
 
 body.dark-mode .principal .productos .producto .info-producto .precioYCarrito button {
     color: white;
-    background-color: #7E5A9B;
-    border: 2px solid #7E5A9B;
+    background-color: #613DC1;
+    border: 2px solid transparent;
 }
 
 body.dark-mode .principal .productos .producto .info-producto .precioYCarrito button:hover {
@@ -128,7 +126,7 @@ body.dark-mode .principal .productos .producto .info-producto .precioYCarrito bu
 }
 
 body.dark-mode .footer {
-    background-color: #422138;
+    background-color: #381B49;
 }
 
 body.dark-mode .footer>p {
@@ -458,6 +456,7 @@ label {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 5px;
 }
 
 .itemLista {
@@ -599,7 +598,7 @@ label {
 .enviarRegistro>input {
     padding: 7px 15px;
     background-color: #68C5DB;
-    border: 3px solid #02182B;
+    border: 2px solid #02182B;
     color: #02182B;
     border-radius: 10px;
     transition: all .3s;
