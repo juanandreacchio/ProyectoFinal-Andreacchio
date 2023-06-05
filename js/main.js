@@ -426,7 +426,7 @@ const productos = [
         nombre: "Champions",
         id: "Champions",
     },
-    precio: 81.70,
+    precio: 81.79,
 },
     {
         id: "Chelsea-FC-Local",
@@ -547,7 +547,7 @@ const productos = [
             nombre: "Champions",
             id: "Champions",
         },
-        precio: 60.20,
+        precio: 60.26,
     },
     {
         id: "Manchester-City-Local",
@@ -591,7 +591,7 @@ const productos = [
             nombre: "Champions",
             id: "Champions",
         },
-        precio: 84.20,
+        precio: 84.21,
     },
     {
         id: "RB-Leipzig-Local",
@@ -855,7 +855,7 @@ const productos = [
             nombre: "LPF",
             id: "LPF",
         },
-        precio: 87.30,
+        precio: 87.31,
     },
     {
         id: "Independiente-Titular",
@@ -998,7 +998,7 @@ const productos = [
             nombre: "LPF",
             id: "LPF",
         },
-        precio: 84.20,
+        precio: 84.22,
     },
     {
         id: "Titular-Velez",
@@ -1365,28 +1365,14 @@ const productos = [
     }
 ]
 
-/*
-                    <div class="producto">
-                        <div class="img-producto">
-                            <img src="https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683134072/CursoJS/camisetasNBA/sunsVioleta_xjocy0.png"
-                                alt="">
-                        </div>
-                        <div class="info-producto">
-                            <div class="nombre">
-                                <label for="">Unisex Phoenix Suns Kevin Durant Nike Purple 2022/23 Swingman Jersey -
-                                    Icon Edition</label>
-                            </div>
-                            <div class="precioYCarrito">
-                                <p>
-                                    <label class="precio">119.99</label>
-                                </p>
-                                <button class="agregarCarrito">Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-*/
-
 const contenedorProductos = document.querySelector('.productos');
+const botonesCategoria = document.querySelectorAll('.boton-menu-categoria');
+let darkMode = localStorage.getItem('dark-mode');
+const botonCambiarMode = document.querySelector('.btnCambiarMode');
+const bodyDoc = document.querySelector('body');
+
+
+
 
 function cargarProductos(productosElegidos){
     contenedorProductos.innerHTML="";
@@ -1408,89 +1394,28 @@ function cargarProductos(productosElegidos){
             <button id="${producto.id}" class="agregarCarrito">Agregar al Carrito</button>
         </div>
     </div>
-        `
+        `;
+
         contenedorProductos.append(div);
     })
+    actualizarBotonesAgregar();
 }
-
 cargarProductos(productos);
 
+botonesCategoria.forEach(boton =>{
+    boton.addEventListener('click',(e)=>{
+        botonesCategoria.forEach(boton => boton.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+            if(e.currentTarget.id === 'todos'){
+                cargarProductos(productos);
+            }
+            else{
+                const productosFiltrados = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+                cargarProductos(productosFiltrados);
+            }
+        })
+    })
 
-
-function obtenerPosicionPorNombre(carritoDeCompras, productoAEliminar) {
-    const nuevoArray = carritoDeCompras.map(producto => producto.nombre)
-    posicionAEliminar = nuevoArray.indexOf(productoAEliminar);
-    return posicionAEliminar;
-}
-
-function eliminarProductoPorPosicion(carritoDeCompras, posicion) {
-    totalSinConvertir = totalSinConvertir - carritoDeCompras[posicion].precio
-    carritoDeCompras.splice(posicion, 1);
-}
-
-function mostrarCarrito() {
-    for (let n = 0; n < carrito.length; n++) {
-        console.log(`Producto ${n + 1}\nNombre: ${carrito[n].nombre}\nTalle: ${carrito[n].talle}\nPrecio: $${carrito[n].precio}`);
-    }
-}
-
-function calcularCuotas(cuotas, precio) {
-    let cuotaIndividual = Math.ceil(precio / cuotas);
-    return cuotaIndividual;
-}
-
-function ordenarCarrito(carritoAOrdenar, criterio) {
-    switch (criterio) {
-        case '1':
-            carritoAOrdenar.sort((a, b) => b.precio - a.precio);
-            break;
-        case '2':
-            carritoAOrdenar.sort((a, b) => a.precio - b.precio)
-            break;
-        case '3':
-            carritoAOrdenar.sort((a, b) => {
-                if (a.nombre < b.nombre) {
-                    return 1;
-                }
-                if (a.nombre > b.nombre) {
-                    return -1;
-                }
-                return 0;
-            })
-            break;
-        case '4':
-            carritoAOrdenar.sort((a, b) => {
-                if (a.nombre < b.nombre) {
-                    return -1;
-                }
-                if (a.nombre > b.nombre) {
-                    return 1;
-                }
-                return 0;
-            })
-            break;
-    }
-}
-
-function dolarAEuro(precio) {
-    return precio / 1.10
-}
-
-function dolarAPeso(precio) {
-    return precio * 410;
-}
-
-
-
-const carrito = []
-
-
-
-
-let darkMode = localStorage.getItem('dark-mode');
-const botonCambiarMode = document.querySelector('.btnCambiarMode');
-console.log(botonCambiarMode);
-const bodyDoc = document.querySelector('body');
 
 if(!darkMode){
     localStorage.setItem('dark-mode',"desactivado");
@@ -1514,9 +1439,6 @@ function desactivarDarkMode(){
     bodyDoc.classList.remove('dark-mode');
 }
 
-console.log(botonCambiarMode.innerHTML);
-
-
 
 botonCambiarMode.addEventListener('click', () =>{
     darkMode = localStorage.getItem('dark-mode');
@@ -1530,5 +1452,33 @@ botonCambiarMode.addEventListener('click', () =>{
     }
 });
 
-const btnsAgregarCarrito = document.querySelectorAll('.agregarCarrito');
-console.log(btnsAgregarCarrito);
+function actualizarBotonesAgregar(){
+    botonesAgregar = document.querySelectorAll('.agregarCarrito');
+    botonesAgregar.forEach(boton =>{
+        boton.addEventListener('click',agregarAlCarrito);
+    })
+}
+let productosEnCarrito;
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+if (productosEnCarritoLS) {
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+}
+else{
+    productosEnCarrito = [];
+}
+
+function agregarAlCarrito(e){
+    const idBoton = e.currentTarget.id;
+    const productoAgregar = productos.find(producto => producto.id === idBoton);
+    if (productosEnCarrito.some(producto => productoAgregar.id === producto.id)){
+        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+        productosEnCarrito[index].cantidad++;
+    }
+    else{
+        productoAgregar.cantidad = 1;
+        productosEnCarrito.push(productoAgregar);
+    }
+    localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
+}
+
+

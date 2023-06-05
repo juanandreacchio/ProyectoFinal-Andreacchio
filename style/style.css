@@ -15,6 +15,8 @@ body {
     justify-content: space-between;
 }
 
+
+
 body.dark-mode {
     background-color: #210B2C !important;
 }
@@ -174,6 +176,23 @@ body.dark-mode .carrito #tituloCarrito {
 body.dark-mode .carrito .productosCarrito {
     border: 6px solid #613DC1;
     border-top: none;
+}
+
+body.dark-mode .carrito .carritoEmpty{
+    border: 6px solid #613DC1;
+    border-top: none;
+}
+
+body.dark-mode .carrito .carritoEmpty > p{
+    color: white;
+}
+
+body.dark-mode .carrito .carritoEmpty > p a{
+    color: #613DC1;
+}
+
+body.dark-mode .carrito .carritoEmpty > p a:hover{
+    color: #B288C0;
 }
 
 body.dark-mode .carrito .productosCarrito .productoCarro .descripcionProductoCarro small {
@@ -676,6 +695,7 @@ footer>p {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding-top: 1rem;
+    width: 100%;
 }
 
 .carrito {
@@ -706,15 +726,49 @@ footer>p {
 }
 
 
+
+
 .precioProductoCarro,
 .subtotal {
     font-size: .8rem;
+    text-align: center;
+    flex: 1;
+}
+
+.precioProductoCarro > p,
+.subtotal > p{
     text-align: center;
 }
 
 .descripcionProductoCarro {
     text-align: start;
     font-size: .8rem;
+    flex: 3;
+    padding-left: 10px;
+}
+
+.carritoEmpty{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid #68C5DB;
+    border-top: none;
+}
+
+.carritoEmpty > p{
+    color: #101D42;
+    font-weight: bold;
+}
+
+.carritoEmpty > p a{
+    transition: .3s;
+    color: #1B4965;
+}
+
+.carritoEmpty > p a:hover{
+    color: #68C5DB;
 }
 
 .eliminarProductoCarro {
@@ -763,4 +817,8 @@ footer>p {
 .productoAgregado span {
     font-weight: bold;
     color: #424242;
+}
+
+.none{
+    display: none;
 }
