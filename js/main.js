@@ -418,16 +418,16 @@ const productos = [
         precio: 95.99,
     },
     {
-    id: "Celtic-Local",
-    titulo: "Camiseta Celtic Local Authentic 2022/23",
-    imagen:
-        "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683163921/CursoJS/camisetasChampionsLeague/celticFLocal_d6slrq.png",
-    categoria: {
-        nombre: "Champions",
-        id: "Champions",
+        id: "Celtic-Local",
+        titulo: "Camiseta Celtic Local Authentic 2022/23",
+        imagen:
+            "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683163921/CursoJS/camisetasChampionsLeague/celticFLocal_d6slrq.png",
+        categoria: {
+            nombre: "Champions",
+            id: "Champions",
+        },
+        precio: 81.79,
     },
-    precio: 81.79,
-},
     {
         id: "Chelsea-FC-Local",
         titulo: "Camiseta Chelsea FC Local Authentic 2022/23",
@@ -1370,16 +1370,16 @@ const botonesCategoria = document.querySelectorAll('.boton-menu-categoria');
 let darkMode = localStorage.getItem('dark-mode');
 const botonCambiarMode = document.querySelector('.btnCambiarMode');
 const bodyDoc = document.querySelector('body');
+let select = document.querySelector("#ordenar");
 
 
 
-
-function cargarProductos(productosElegidos){
-    contenedorProductos.innerHTML="";
-    productosElegidos.forEach(producto =>{
+function cargarProductos(productosElegidos) {
+    contenedorProductos.innerHTML = "";
+    productosElegidos.forEach(producto => {
         const div = document.createElement('div');
         div.classList.add('producto');
-        div.innerHTML= `
+        div.innerHTML = `
         <div class="img-producto">
         <img src="${producto.imagen}" alt="${producto.titulo}">
     </div>
@@ -1401,84 +1401,172 @@ function cargarProductos(productosElegidos){
     actualizarBotonesAgregar();
 }
 cargarProductos(productos);
+select.value = "Default";
+select.addEventListener('change', () => {
+    let opcionSeleccionada = select.value;
+    console.log(opcionSeleccionada);
+    switch (opcionSeleccionada) {
+        case 'precioMayor':
+            ordenarProductosPorPrecioMayorMenor(productos);
+            break;
+        case 'precioMenor':
+            ordenarProductosPorPrecioMenorMayor(productos);
+            break;
+        case 'alfabeticoAZ':
+            ordenaAlfabeticoAZ(productos);
+            break;
+        case 'alfabeticoZA':
+            ordenaAlfabeticoZA(productos);
+            break;
+        case 'Default':
+            cargarProductos(productos);
+            break;
+    }
+})
 
-botonesCategoria.forEach(boton =>{
-    boton.addEventListener('click',(e)=>{
+botonesCategoria.forEach(boton => {
+    boton.addEventListener('click', (e) => {
         botonesCategoria.forEach(boton => boton.classList.remove('active'));
         e.currentTarget.classList.add('active');
-            if(e.currentTarget.id === 'todos'){
-                cargarProductos(productos);
-            }
-            else{
-                const productosFiltrados = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
-                cargarProductos(productosFiltrados);
-            }
-        })
+        if (e.currentTarget.id === 'todos') {
+            cargarProductos(productos);
+        }
+        else {
+            const productosFiltrados = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+            cargarProductos(productosFiltrados);
+            select.value = "Default";
+            select.addEventListener('change', () => {
+                let opcionSeleccionada = select.value;
+                switch (opcionSeleccionada) {
+                    case 'precioMayor':
+                        ordenarProductosPorPrecioMayorMenor(productosFiltrados);
+                        break;
+                    case 'precioMenor':
+                        ordenarProductosPorPrecioMenorMayor(productosFiltrados);
+                        break;
+                    case 'alfabeticoAZ':
+                        ordenaAlfabeticoAZ(productosFiltrados);
+                        break;
+                    case 'alfabeticoZA':
+                        ordenaAlfabeticoZA(productosFiltrados);
+                        break;
+                    case 'Default':
+                        cargarProductos(productosFiltrados);
+                        break;
+                }
+            })
+        }
     })
+})
 
 
-if(!darkMode){
-    localStorage.setItem('dark-mode',"desactivado");
+if (!darkMode) {
+    localStorage.setItem('dark-mode', "desactivado");
 }
-if(darkMode === "activado"){
+if (darkMode === "activado") {
     activarDarkMode();
     botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
 }
-if(darkMode === "desactivado"){
+if (darkMode === "desactivado") {
     desactivarDarkMode();
     botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
 }
 
-function activarDarkMode(){
-    localStorage.setItem('dark-mode',"activado");
+function activarDarkMode() {
+    localStorage.setItem('dark-mode', "activado");
     bodyDoc.classList.add('dark-mode');
 }
 
-function desactivarDarkMode(){
-    localStorage.setItem('dark-mode',"desactivado");
+function desactivarDarkMode() {
+    localStorage.setItem('dark-mode', "desactivado");
     bodyDoc.classList.remove('dark-mode');
 }
 
 
-botonCambiarMode.addEventListener('click', () =>{
+botonCambiarMode.addEventListener('click', () => {
     darkMode = localStorage.getItem('dark-mode');
-    if(darkMode === "activado"){
+    if (darkMode === "activado") {
         desactivarDarkMode();
         botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
     }
-    if(darkMode === "desactivado"){
+    if (darkMode === "desactivado") {
         activarDarkMode();
         botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
     }
 });
 
-function actualizarBotonesAgregar(){
+function actualizarBotonesAgregar() {
     botonesAgregar = document.querySelectorAll('.agregarCarrito');
-    botonesAgregar.forEach(boton =>{
-        boton.addEventListener('click',agregarAlCarrito);
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener('click', agregarAlCarrito);
     })
-}
+};
+
 let productosEnCarrito;
 let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 if (productosEnCarritoLS) {
     productosEnCarrito = JSON.parse(productosEnCarritoLS);
 }
-else{
+else {
     productosEnCarrito = [];
 }
 
-function agregarAlCarrito(e){
+function agregarAlCarrito(e) {
     const idBoton = e.currentTarget.id;
     const productoAgregar = productos.find(producto => producto.id === idBoton);
-    if (productosEnCarrito.some(producto => productoAgregar.id === producto.id)){
+    if (productosEnCarrito.some(producto => productoAgregar.id === producto.id)) {
         const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
         productosEnCarrito[index].cantidad++;
     }
-    else{
+    else {
         productoAgregar.cantidad = 1;
         productosEnCarrito.push(productoAgregar);
     }
-    localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
+
+
+function ordenarProductosPorPrecioMayorMenor(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => b.precio - a.precio);
+    cargarProductos(productosAux);
+}
+
+function ordenarProductosPorPrecioMenorMayor(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => a.precio - b.precio);
+    cargarProductos(productosAux);
+}
+
+function ordenaAlfabeticoZA(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => {
+        if (a.titulo < b.titulo) {
+            return 1;
+        }
+        if (a.titulo > b.titulo) {
+            return -1;
+        }
+        return 0;
+    })
+    cargarProductos(productosAux);
+}
+
+
+function ordenaAlfabeticoAZ(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => {
+        if (a.titulo < b.titulo) {
+            return -1;
+        }
+        if (a.titulo > b.titulo) {
+            return 1;
+        }
+        return 0;
+    })
+    cargarProductos(productosAux);
+}
+
+
 
 
