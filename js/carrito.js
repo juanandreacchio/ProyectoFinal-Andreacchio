@@ -7,6 +7,9 @@ const botonCambiarMode = document.querySelector('.btnCambiarMode');
 console.log(botonCambiarMode);
 let botonesEliminar = document.querySelectorAll('.eliminarProductoCarro');
 const bodyDoc = document.querySelector('body');
+let botonesAumentarCantidad = document.querySelectorAll('.aumentarCantidadProducto');
+let botonesRestarCantidad = document.querySelectorAll('.restarCantidadProducto');
+console.log(botonesAumentarCantidad);
 
 console.log(productosEnCarrito);
 
@@ -20,14 +23,17 @@ function cargarProductosAlCarro(){
         const div = document.createElement("div");
         div.classList.add("productoCarro");
         div.innerHTML = `
-        <img src="${producto.imagen}" alt="${producto.titulo}" srcset="" style="width: 85px; height: 85px;">
+          <img src="${producto.imagen}" alt="${producto.titulo}" srcset="" style="width: 85px; height: 85px;">
           <div class="descripcionProductoCarro">
             <small>Producto</small>
             <p>
-            ${producto.titulo}
+              ${producto.titulo}
             </p>
-            <p class="cantidad">
-              Cantidad: ${producto.cantidad}
+          </div>
+          <div class="cantidadProductoCarro">
+            <small>Cantidad</small>
+            <p>
+              <button class="restarCantidadProducto" id="${producto.id}">-</button> ${producto.cantidad} <button class="aumentarCantidadProducto" id="${producto.id}">+</button>
             </p>
           </div>
           <div class="precioProductoCarro">
@@ -47,6 +53,8 @@ function cargarProductosAlCarro(){
         containerProductos.append(div)
     });
     actualizaBotonesDeEliminar();
+    actualizarBotonesDisminuir();
+    actualizarBotonesAumentar();
   }
   else{
     carritoVacio.classList.remove('none');
@@ -87,6 +95,41 @@ function actualizaBotonesDeEliminar (){
   botonesEliminar.forEach(boton =>{
     boton.addEventListener('click',eliminarDelCarrito);
   });
+}
+
+function actualizarBotonesDisminuir(){
+  botonesRestarCantidad = document.querySelectorAll('.restarCantidadProducto');
+  botonesRestarCantidad.forEach(boton =>{
+    boton.addEventListener('click',disminuirCantidad);
+  })
+}
+
+function actualizarBotonesAumentar(){
+  botonesAumentarCantidad = document.querySelectorAll('.aumentarCantidadProducto');
+  botonesAumentarCantidad.forEach(boton =>{
+    boton.addEventListener('click',aumentarCantidad);
+  })
+}
+
+function aumentarCantidad (e){
+  const idBoton = e.currentTarget.id;
+  console.log(idBoton);
+  const indice = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+  productosEnCarrito[indice].cantidad++;
+  cargarProductosAlCarro();
+  localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
+}
+
+function disminuirCantidad (e){
+  const idBoton = e.currentTarget.id;
+  console.log(idBoton);
+  const indice = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+  productosEnCarrito[indice].cantidad= productosEnCarrito[indice].cantidad - 1;
+  if(productosEnCarrito[indice].cantidad === 0){
+    productosEnCarrito.splice(indice,1);
+  }
+  cargarProductosAlCarro();
+  localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
 }
 
 function eliminarDelCarrito(e){
