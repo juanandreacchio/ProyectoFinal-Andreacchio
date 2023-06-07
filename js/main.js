@@ -1389,7 +1389,7 @@ function cargarProductos(productosElegidos) {
         </div>
         <div class="precioYCarrito">
             <p>
-                <label class="precio">$${producto.precio}</label>
+                <label class="precio">$${(producto.precio).toFixed(2)}</label>
             </p>
             <button id="${producto.id}" class="agregarCarrito">Agregar al Carrito</button>
         </div>
@@ -1460,17 +1460,11 @@ botonesCategoria.forEach(boton => {
 })
 
 
-if (!darkMode) {
-    localStorage.setItem('dark-mode', "desactivado");
-}
-if (darkMode === "activado") {
-    activarDarkMode();
-    botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
-}
-if (darkMode === "desactivado") {
-    desactivarDarkMode();
-    botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
-}
+!darkMode && localStorage.setItem('dark-mode',"desactivado");
+darkMode === "activado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>')
+
+darkMode === "desactivado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>');
+
 
 function activarDarkMode() {
     localStorage.setItem('dark-mode', "activado");
@@ -1485,14 +1479,8 @@ function desactivarDarkMode() {
 
 botonCambiarMode.addEventListener('click', () => {
     darkMode = localStorage.getItem('dark-mode');
-    if (darkMode === "activado") {
-        desactivarDarkMode();
-        botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
-    }
-    if (darkMode === "desactivado") {
-        activarDarkMode();
-        botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
-    }
+    darkMode === "activado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>')
+    darkMode === "desactivado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>');
 });
 
 function actualizarBotonesAgregar() {
@@ -1504,12 +1492,8 @@ function actualizarBotonesAgregar() {
 
 let productosEnCarrito;
 let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
-if (productosEnCarritoLS) {
-    productosEnCarrito = JSON.parse(productosEnCarritoLS);
-}
-else {
-    productosEnCarrito = [];
-}
+productosEnCarritoLS ? productosEnCarrito = JSON.parse(productosEnCarritoLS) : productosEnCarrito = [];
+
 
 function agregarAlCarrito(e) {
     const idBoton = e.currentTarget.id;

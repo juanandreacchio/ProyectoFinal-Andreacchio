@@ -9,7 +9,9 @@ let botonesEliminar = document.querySelectorAll('.eliminarProductoCarro');
 const bodyDoc = document.querySelector('body');
 let botonesAumentarCantidad = document.querySelectorAll('.aumentarCantidadProducto');
 let botonesRestarCantidad = document.querySelectorAll('.restarCantidadProducto');
-console.log(botonesAumentarCantidad);
+const containerAccionesCarrito = document.querySelector('.acciones-carito');
+let total = document.querySelector('#total');
+const botonVaciar = document.querySelector('#vaciarCarrito');
 
 console.log(productosEnCarrito);
 
@@ -18,6 +20,7 @@ function cargarProductosAlCarro(){
   if(productosEnCarrito && productosEnCarrito.length > 0){
     carritoVacio.classList.add('none');
     containerProductos.classList.remove('none');
+    containerAccionesCarrito.classList.remove('none');
     containerProductos.innerHTML = '';
     productosEnCarrito.forEach(producto => {
         const div = document.createElement("div");
@@ -38,12 +41,12 @@ function cargarProductosAlCarro(){
           </div>
           <div class="precioProductoCarro">
             <small>Precio</small>
-            <p>$${producto.precio}</p>
+            <p>$${(producto.precio).toFixed(2)}</p>
           </div>
           <div class="subtotal">
             <small>Subtotal</small>
             <p>
-              $${producto.precio * producto.cantidad}
+              $${(producto.precio * producto.cantidad).toFixed(2)}
             </p>
           </div>
           <button class="eliminarProductoCarro" id="${producto.id}">
@@ -55,10 +58,12 @@ function cargarProductosAlCarro(){
     actualizaBotonesDeEliminar();
     actualizarBotonesDisminuir();
     actualizarBotonesAumentar();
+    actualizarTotal();
   }
   else{
     carritoVacio.classList.remove('none');
-    containerProductos.classList.add('none')
+    containerProductos.classList.add('none');
+    containerAccionesCarrito.classList.add('none');
   }
 
 }
@@ -66,17 +71,11 @@ function cargarProductosAlCarro(){
 cargarProductosAlCarro();
 
 
-if(!darkMode){
-    localStorage.setItem('dark-mode',"desactivado");
-}
-if(darkMode === "activado"){
-    activarDarkMode();
-    botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
-}
-if(darkMode === "desactivado"){
-    desactivarDarkMode();
-    botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
-}
+!darkMode && localStorage.setItem('dark-mode',"desactivado");
+darkMode === "activado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>')
+
+darkMode === "desactivado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>');
+
 
 function activarDarkMode(){
     localStorage.setItem('dark-mode',"activado");
@@ -95,6 +94,11 @@ function actualizaBotonesDeEliminar (){
   botonesEliminar.forEach(boton =>{
     boton.addEventListener('click',eliminarDelCarrito);
   });
+}
+
+function actualizarTotal(){
+  let precioTotal = productosEnCarrito.reduce((acc,producto) => acc + (producto.precio * producto.cantidad),0)
+  total.innerText = `Total: $${precioTotal.toFixed(2)}`
 }
 
 function actualizarBotonesDisminuir(){
@@ -124,10 +128,8 @@ function disminuirCantidad (e){
   const idBoton = e.currentTarget.id;
   console.log(idBoton);
   const indice = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-  productosEnCarrito[indice].cantidad= productosEnCarrito[indice].cantidad - 1;
-  if(productosEnCarrito[indice].cantidad === 0){
-    productosEnCarrito.splice(indice,1);
-  }
+  productosEnCarrito[indice].cantidad = productosEnCarrito[indice].cantidad - 1;
+  productosEnCarrito[indice].cantidad === 0 && productosEnCarrito.splice(indice,1);
   cargarProductosAlCarro();
   localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
 }
@@ -140,16 +142,18 @@ function eliminarDelCarrito(e){
   localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
 }
 
+botonVaciar.addEventListener('click',vaciarCarrito);
+
+function vaciarCarrito(){
+  productosEnCarrito = [];
+  cargarProductosAlCarro();
+  localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
+}
+
 botonCambiarMode.addEventListener('click', () =>{
     darkMode = localStorage.getItem('dark-mode');
-    if(darkMode === "activado"){
-        desactivarDarkMode();
-        botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>'
-    }
-    if(darkMode === "desactivado"){
-        activarDarkMode();
-        botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
-    }
+    darkMode === "activado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>')
+    darkMode === "desactivado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>');
 });
 
 

@@ -195,6 +195,26 @@ body.dark-mode .carrito .productosCarrito .productoCarro {
     border-bottom: 1px solid #613DC1;
 }
 
+body.dark-mode .carrito .productosCarrito .productoCarro .cantidadProductoCarro small{
+color: white;
+}
+
+body.dark-mode .carrito .productosCarrito .productoCarro .cantidadProductoCarro p{
+    color: white;
+}
+
+body.dark-mode .carrito .productosCarrito .productoCarro .cantidadProductoCarro p button{
+    background-color: #7E5A9B;
+    border: 3px solid #7E5A9B;
+    color: #1E152A;
+}
+
+body.dark-mode .carrito .productosCarrito .productoCarro .cantidadProductoCarro p button:hover{
+    background-color: #1E152A;
+    border: 3px solid #7E5A9B;
+    color: white;
+}
+
 body.dark-mode .carrito .productosCarrito .productoCarro .descripcionProductoCarro p {
     color: white;
 }
@@ -225,6 +245,22 @@ body.dark-mode .carrito .productosCarrito .productoCarro .eliminarProductoCarro:
     background-color: transparent;
     color: #A5243D;
     border: 2px solid #A5243D;
+}
+
+body.dark-mode .carrito .acciones-carito div button{
+    background-color: #7E5A9B;
+    border: 3px solid #7E5A9B;
+    color: #1E152A;
+}
+
+body.dark-mode .carrito .acciones-carito div button:hover{
+    background-color: #1E152A;
+    border: 3px solid #7E5A9B;
+    color: white;
+}
+
+body.dark-mode .carrito .acciones-carito .div-precio-comprar p{
+    color: white;
 }
 
 /*INGRESO Y REGISTRO DARK MODE*/
@@ -285,13 +321,13 @@ body.dark-mode .registerBox .hijo a#olvideContrasenia:hover>label {
     color: #A88FAC;
 }
 
-body.dark-mode .registerBox .hijo .enviarRegistro>input {
+body.dark-mode .registerBox .hijo .enviarRegistro>button {
     background-color: #7E5A9B;
     border: 2px solid #7E5A9B;
     color: #1E152A;
 }
 
-body.dark-mode .registerBox .hijo .enviarRegistro:hover>input {
+body.dark-mode .registerBox .hijo .enviarRegistro:hover>button {
     background-color: #1E152A;
     border: 2px solid #7E5A9B;
     color: white;
@@ -626,7 +662,7 @@ label {
     margin-bottom: 0;
 }
 
-.enviarRegistro>input {
+.enviarRegistro>button {
     padding: 7px 15px;
     background-color: #68C5DB;
     border: 2px solid #02182B;
@@ -635,13 +671,13 @@ label {
     transition: all .3s;
 }
 
-.enviarRegistro>input:hover {
+.enviarRegistro>button:hover {
     background-color: #02182B;
     border: 3px solid #68C5DB;
     color: #68C5DB;
 }
 
-.enviarRegistro>input:active {
+.enviarRegistro>button:active {
     background-color: #1c1f1d;
     border: 3px solid #2a2e2c;
     color: rgb(86, 85, 85);
@@ -895,6 +931,11 @@ footer>p {
     font-weight: bold;
     border: 3px solid transparent;
     transition: .3s;
+}
+
+.restarCantidadProducto,
+.aumentarCantidadProducto{
+margin: 0px 5px;
 }
 
 .div-precio-comprar button:hover,
