@@ -628,6 +628,31 @@ label {
     width: 100%;
 }
 
+.loginFail{
+    padding-top: 7px;
+    font-weight: bold;
+    color: #FF220C;
+}
+
+.bienvenida{
+    color: #101D42;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.comprar a{
+    color: #1B4965;
+    transition: .3s;
+}
+
+.comprar a:hover{
+    color: #68C5DB;
+}
+
+.comprar{
+    color: #101D42;
+}
+
 .tituloRegistro {
     color: #101D42;
     font-weight: bold;
