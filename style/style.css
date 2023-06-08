@@ -269,6 +269,23 @@ body.dark-mode .registerBox .hijo {
     background-color: #1E152A;
 }
 
+body.dark-mode .registerBox .hijo .bienvenida{
+    color: white;
+}
+
+body.dark-mode .registerBox .hijo .comprar{
+    color: white;
+}
+
+body.dark-mode .registerBox .hijo .comprar a{
+    color: #613DC1;
+    transition: .3s;
+}
+
+body.dark-mode .registerBox .hijo .comprar a:hover{
+    color: #B288C0;
+}
+
 body.dark-mode .registerBox .hijo .tituloRegistro,
 body.dark-mode .registerBox .hijo .usuario .tituloUsuario,
 body.dark-mode .registerBox .hijo .tituloRecuperar{
@@ -638,6 +655,19 @@ label {
     color: #101D42;
     font-size: 1.3rem;
     font-weight: bold;
+}
+
+.cerrarSesion{
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #FF220C;
+    color: white;
+    border: 2px solid #FF220C;
+    transition: .3s;
+}
+
+.cerrarSesion:hover{
+    background-color: #B10F2E;
 }
 
 .comprar a{
