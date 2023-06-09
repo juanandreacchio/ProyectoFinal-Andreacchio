@@ -969,6 +969,8 @@ footer>p {
     align-items: center;
 }
 
+
+
 .div-precio-comprar p{
     color: #101D42;
     font-weight: bold;
@@ -992,6 +994,8 @@ footer>p {
 .aumentarCantidadProducto{
 margin: 0px 5px;
 }
+
+
 
 .div-precio-comprar button:hover,
 .div-vaciarCarrito button:hover,

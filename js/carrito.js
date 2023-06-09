@@ -16,6 +16,8 @@ const botonVaciar = document.querySelector('#vaciarCarrito');
 console.log(productosEnCarrito);
 
 
+
+
 function cargarProductosAlCarro(){
   if(productosEnCarrito && productosEnCarrito.length > 0){
     carritoVacio.classList.add('none');
@@ -145,9 +147,56 @@ function eliminarDelCarrito(e){
 botonVaciar.addEventListener('click',vaciarCarrito);
 
 function vaciarCarrito(){
-  productosEnCarrito = [];
-  cargarProductosAlCarro();
-  localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito));
+  const cantidadDeProductos = productosEnCarrito.reduce((acc,producto) => acc + producto.cantidad,0);
+  darkMode = localStorage.getItem('dark-mode');
+  if(darkMode === "desactivado"){
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: `¿Deseas eliminar los ${cantidadDeProductos} productos del carrito? `,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si!',
+    cancelButtonText: 'Cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Vaciado!',
+        'El carrito fue vaciado correctamente.',
+        'success',
+        productosEnCarrito = [],
+        cargarProductosAlCarro(),
+        localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito))
+      )
+    }
+  })
+  }
+  else{
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Deseas eliminar los ${cantidadDeProductos} productos del carrito? `,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si!',
+      cancelButtonText: 'Cancelar',
+      iconColor: "#FF0035",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Vaciado!',
+          'El carrito fue vaciado correctamente.',
+          'success',
+          productosEnCarrito = [],
+          cargarProductosAlCarro(),
+          localStorage.setItem("productos-en-carrito",JSON.stringify(productosEnCarrito))
+        )
+      }
+    })
+  }
 }
 
 botonCambiarMode.addEventListener('click', () =>{

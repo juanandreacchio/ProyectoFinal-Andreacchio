@@ -6,11 +6,11 @@ const baseDeUsuarios = JSON.parse(localStorage.getItem("Base-de-datos"));
 let inputUsuario = document.querySelector('.ingresoUsuario');
 let inputPass = document.querySelector('.formContrasenia');
 let textoFailLogin = document.querySelector('.loginFail');
-const boxIngresar = document.querySelector('.hijo')
+const boxIngresar = document.querySelector('.hijo');
 let estaLogeadoSS = sessionStorage.getItem("logeado");
 let botonCerrarSesion;
 let ojo = document.querySelector('.ojo');
-let formContraseña = document.querySelector('.formContrasenia')
+let formContraseña = document.querySelector('.formContrasenia');
 let puedoVerContraseña = false;
 
 function actualizarBotonCerrarSesion() {
