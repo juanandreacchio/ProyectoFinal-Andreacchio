@@ -373,7 +373,35 @@ body.dark-mode .principal .main .ordenamientoYBusqueda .ordenamiento #ordenar{
     border-color:#613DC1;
 }
 
+/* FINALIZAR PAGO DARK MODE*/
 
+body.dark-mode .carrito p{
+    color: white;
+}
+
+body.dark-mode .carrito > div  input{
+    background-color: #1E152A;
+    border-color:#613DC1;
+    color: white;
+}
+
+body.dark-mode .carrito .medioDePago .numeroCard input::placeholder{
+    color: white;
+}
+
+body.dark-mode .comprar,
+body.dark-mode .volver{
+    background-color: #7E5A9B;
+    border: 2px solid #7E5A9B;
+    color: #1E152A;
+}
+
+body.dark-mode .comprar:hover,
+body.dark-mode .volver:hover{
+    background-color: #1E152A;
+    border: 2px solid #7E5A9B;
+    color: white;
+}
 
 .principal {
     display: grid;
@@ -645,10 +673,11 @@ label {
     width: 100%;
 }
 
-.loginFail{
+.loginFail,
+.mensajeDeError{
     padding-top: 7px;
     font-weight: bold;
-    color: #FF220C;
+    color: #FF220C !important;
 }
 
 .bienvenida{
@@ -806,6 +835,7 @@ footer>p {
     display: flex;
     flex-direction: column;
     border: 6px solid #68C5DB;
+    padding: 1rem;
 }
 
 .productoCarro {
@@ -980,7 +1010,9 @@ footer>p {
 .div-precio-comprar button,
 .div-vaciarCarrito button,
 .aumentarCantidadProducto,
-.restarCantidadProducto{
+.restarCantidadProducto,
+.comprar,
+.volver{
     padding: 4px 8px;
     border-radius: 6px;
     background-color: #68C5DB;
@@ -988,6 +1020,11 @@ footer>p {
     font-weight: bold;
     border: 3px solid transparent;
     transition: .3s;
+}
+
+.comprar,
+.volver{
+    border: 2px solid transparent;
 }
 
 .restarCantidadProducto,
@@ -1000,7 +1037,9 @@ margin: 0px 5px;
 .div-precio-comprar button:hover,
 .div-vaciarCarrito button:hover,
 .aumentarCantidadProducto:hover,
-.restarCantidadProducto:hover{
+.restarCantidadProducto:hover,
+.comprar:hover,
+.volver:hover{
     background-color: #101D42;
     color: #68C5DB;
     border-color: #68C5DB;
@@ -1015,6 +1054,107 @@ margin: 0px 5px;
     text-align: center;
 }
 
+
+.medioDePago{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: .1rem;
+    align-items: center;
+}
+
+.numeroCard{
+    width: 100%;
+}
+
+.numeroCard > p{
+    text-align: start;
+    margin-bottom: 0;
+    padding-bottom: .25rem;
+    color: #101D42;
+    font-weight: bold;
+}
+
+.numberTarjeta{
+    width: 100%;
+    border: 1px solid #b4b7ba;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.codigoYVencimiento{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.codigo,
+.vencimiento{
+    width: 100%;
+}
+
+.codigo > input,
+.vencimiento > input{
+    width: 100%;
+    border: 1px solid #b4b7ba;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.codigo > p,
+.vencimiento > p{
+    text-align: start;
+    margin-bottom: 0;
+    padding-bottom: .25rem;
+    color: #101D42;
+    font-weight: bold;
+}
+
+.botonComprar{
+    display: flex;
+    justify-content: space-between;
+    padding-top: .25rem;
+}
+
+.envio{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.envio > p{
+    margin-bottom: 0;
+    text-align: start;
+    color: #101D42;
+    font-weight: bold;
+}
+
+.direccion{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: .5rem;
+}
+
+.direccion > div{
+    width: 100%;
+}
+
+.direccion > div > input{
+    width: 100%;
+    border: 1px solid #b4b7ba;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.direccion > div > p{
+    margin-bottom: 0;
+    padding-bottom: .25rem;
+    text-align: start;
+    color: #101D42;
+    font-weight: bold;
+}
 
 .none{
     display: none;
