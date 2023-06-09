@@ -273,16 +273,16 @@ body.dark-mode .registerBox .hijo .bienvenida{
     color: white;
 }
 
-body.dark-mode .registerBox .hijo .comprar{
+body.dark-mode .registerBox .hijo .ingreseAqui{
     color: white;
 }
 
-body.dark-mode .registerBox .hijo .comprar a{
+body.dark-mode .registerBox .hijo .ingreseAqui a{
     color: #613DC1;
     transition: .3s;
 }
 
-body.dark-mode .registerBox .hijo .comprar a:hover{
+body.dark-mode .registerBox .hijo .ingreseAqui a:hover{
     color: #B288C0;
 }
 

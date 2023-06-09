@@ -36,7 +36,7 @@ function iniciarSesion() {
         if (baseDeUsuarios.some(usuario => inputUsuario.value === usuario.nombreUsuario && inputPass.value === usuario.contraseña)) {
             boxIngresar.innerHTML = `
             <p class="bienvenida">Bienvenido de nuevo ${inputUsuario.value}!</p>
-          <p class="comprar"><a href="../index.html">Ingrese aquí</a> para encontrar lo que estaba buscando!</p>
+          <p class="ingreseAqui"><a href="../index.html">Ingrese aquí</a> para encontrar lo que estaba buscando!</p>
           <button class="cerrarSesion">Cerrar sesión</button>
             `
             actualizarBotonCerrarSesion();
@@ -104,7 +104,7 @@ if (estaLogeadoSS) {
         let usuarioSS = JSON.parse(sessionStorage.getItem("usuarioLogeado"));
         boxIngresar.innerHTML = `
         <p class="bienvenida">Bienvenido de nuevo ${usuarioSS.nombreUsuario}!</p>
-        <p class="comprar"><a href="../index.html">Ingrese aquí</a> para encontrar lo que estaba buscando!</p>
+        <p class="ingreseAqui"><a href="../index.html">Ingrese aquí</a> para encontrar lo que estaba buscando!</p>
         <button class="cerrarSesion">Cerrar sesión</button>
         `
         actualizarBotonCerrarSesion();
