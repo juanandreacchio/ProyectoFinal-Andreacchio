@@ -1429,7 +1429,28 @@ botonesCategoria.forEach(boton => {
         botonesCategoria.forEach(boton => boton.classList.remove('active'));
         e.currentTarget.classList.add('active');
         if (e.currentTarget.id === 'todos') {
+            select.value = "Default";
             cargarProductos(productos);
+            select.addEventListener('change', () => {
+                let opcionSeleccionada = select.value;
+                switch (opcionSeleccionada) {
+                    case 'precioMayor':
+                        ordenarProductosPorPrecioMayorMenor(productos);
+                        break;
+                    case 'precioMenor':
+                        ordenarProductosPorPrecioMenorMayor(productos);
+                        break;
+                    case 'alfabeticoAZ':
+                        ordenaAlfabeticoAZ(productos);
+                        break;
+                    case 'alfabeticoZA':
+                        ordenaAlfabeticoZA(productos);
+                        break;
+                    case 'Default':
+                        cargarProductos(productos);
+                        break;
+                }
+            })
         }
         else {
             const productosFiltrados = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
