@@ -1193,6 +1193,14 @@ margin: 0px 5px;
 .carrito{
     justify-content: center;
 }
+.productoCarro{
+    justify-content: flex-start;
+}
+
+.img-productoCarro > img{
+    width: 165px !important;
+    height: 165px !important;
+}
 }
 
 @media screen and (max-width:834px) {
