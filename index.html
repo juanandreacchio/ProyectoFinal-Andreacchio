@@ -81,13 +81,14 @@
         <div class="main">
             <div class="ordenamientoYBusqueda">
                 <div class="busqueda">
-                    <form class="form-buscarProd" role="search">
-                        <input class="input-buscarProd" type="search" placeholder="Buscar">
-                        <button class="btn-buscarProd" type="submit">Buscar</button>
-                    </form>
+                    <form class="d-flex form-buscarProd" role="search">
+                        <input class="input-buscarProd form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class=" btn-buscarProd btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                
                 </div>
                 <div class="ordenamiento">
-                    <select name="ordenar" id="ordenar">
+                    <select id="ordenar" class="ordenar form-select form-select-lg mb-3" aria-label=".form-select-sm example">
                         <option value="Default">Seleccione un método de ordenamiento</option>
                         <option value="precioMayor">Precio (mayor a menor)</option>
                         <option value="precioMenor">Precio (menor a mayor)</option>
