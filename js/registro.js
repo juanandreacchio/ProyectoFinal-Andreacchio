@@ -5,16 +5,18 @@ const bodyDoc = document.querySelector('body');
 const inputUsuario = document.querySelector('.inputEnviar');
 const inputPass = document.querySelector('.formContrasenia');
 const btnRegistrarse = document.querySelector('#registrarUsuario');
+let textoFailLogin = document.querySelector('.loginFail');
 let baseDeUsuarios;
 baseDeUsuariosLS = localStorage.getItem("Base-de-datos");
 baseDeUsuariosLS ? baseDeUsuarios = JSON.parse(baseDeUsuariosLS) : baseDeUsuarios = [];
 
 btnRegistrarse.addEventListener('click',() =>{
     if (inputUsuario.value == "" || inputPass.value == ""){
-        alert('Datos inválidos');
+        textoFailLogin.classList.remove('none');
     }
     else
     {
+        textoFailLogin.classList.add('none');
         const nuevoUser = new User(inputUsuario.value,inputPass.value);
         baseDeUsuarios.push(nuevoUser);
         localStorage.setItem("Base-de-datos",JSON.stringify(baseDeUsuarios));

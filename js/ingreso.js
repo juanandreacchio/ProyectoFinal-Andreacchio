@@ -29,7 +29,7 @@ function actualizarInputsYBotones() {
 
 function iniciarSesion() {
     if (inputUsuario.value == "" || inputPass.value == "") {
-        alert('Datos inválidos');
+        textoFailLogin.classList.remove('none');
     }
     else {
         textoFailLogin.classList.add('none');
