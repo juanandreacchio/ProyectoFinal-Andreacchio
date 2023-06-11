@@ -851,6 +851,10 @@ footer>p {
     padding: 10px;
 }
 
+.img-productoCarro{
+    width: 10%;
+}
+
 .productoCarro p {
     margin-bottom: 0;
     color: #101D42;
@@ -862,6 +866,7 @@ footer>p {
 .resto-productoCarro{
     display: flex;
 align-items: center;
+width: 90%;
 }
 
 
@@ -1175,8 +1180,12 @@ margin: 0px 5px;
 }
 
 @media screen and (max-width:1016px){
+    .img-productoCarro{
+        width: auto;
+    }
 .resto-productoCarro{
     display: unset;
+    width: 50%;
 }
 .descripcionProductoCarro{
     padding-left: 0;
@@ -1254,5 +1263,9 @@ gap: 10px;
 .productos{
         grid-template-columns: 1fr;
 }
+.aumentarCantidadProducto, .restarCantidadProducto {
+    padding: 0px 5px;
+    margin: 0;
+  }
 
 }
