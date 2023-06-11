@@ -31,19 +31,54 @@ const containerDireccion = document.querySelector('.direccion');
 const containerBtnComprar = document.querySelector('.botonComprar');
 const btnVolver = document.querySelector('.volver')
 
+/*
 
+            <img src="https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683134072/CursoJS/camisetasNBA/camisetaNOLA_cmfcnm.png" alt="${producto.titulo}" srcset="" style="width: 85px; height: 85px;">
+          </div>
+
+            <div class="descripcionProductoCarro">
+              <small>Producto</small>
+              <p>
+                Men's New Orleans Pelicans Zion Williamson Nike Navy 2020/21 Swingman Jersey - Icon Edition
+              </p>
+            </div>
+            <div class="cantidadProductoCarro">
+              <small>Cantidad</small>
+              <p>
+                <button class="restarCantidadProducto" id="${producto.id}">-</button> 1 <button class="aumentarCantidadProducto" id="${producto.id}">+</button>
+              </p>
+            </div>
+            <div class="precioProductoCarro">
+              <small>Precio</small>
+              <p>$94.99</p>
+            </div>
+            <div class="subtotal">
+              <small>Subtotal</small>
+              <p>
+                $94.99
+              </p>
+            </div>
+            <button class="eliminarProductoCarro" id="${producto.id}">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+          </div>
+*/
 
  function cargarProductosAlCarro(){
    if(productosEnCarrito && productosEnCarrito.length > 0){
      carritoVacio.classList.add('none');
      containerProductos.classList.remove('none');
      containerAccionesCarrito.classList.remove('none');
-     containerProductos.innerHTML = '';
+    containerProductos.innerHTML = '';
      productosEnCarrito.forEach(producto => {
          const div = document.createElement("div");
          div.classList.add("productoCarro");
          div.innerHTML = `
+         <div class="img-productoCarro">
            <img src="${producto.imagen}" alt="${producto.titulo}" srcset="" style="width: 85px; height: 85px;">
+          </div> 
+          <div class="resto-productoCarro">
            <div class="descripcionProductoCarro">
              <small>Producto</small>
              <p>
@@ -69,6 +104,7 @@ const btnVolver = document.querySelector('.volver')
            <button class="eliminarProductoCarro" id="${producto.id}">
              <i class="fa-solid fa-trash"></i>
            </button>
+           </div>
          `
          containerProductos.append(div)
      });

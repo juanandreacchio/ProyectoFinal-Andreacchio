@@ -356,6 +356,12 @@ border-color:#613DC1;
 color: white;
 }
 
+body.dark-mode .principal .main .ordenamientoYBusqueda .busqueda .form-buscarProd .input-buscarProd::placeholder{
+    color: white;
+    }
+
+
+
 body.dark-mode .principal .main .ordenamientoYBusqueda .busqueda .form-buscarProd .btn-buscarProd{
     background-color: #613DC1;
     color: white;
@@ -853,6 +859,11 @@ footer>p {
     font-size: .8rem;
 }
 
+.resto-productoCarro{
+    display: flex;
+align-items: center;
+}
+
 
 
 
@@ -1161,6 +1172,27 @@ margin: 0px 5px;
 
 .none{
     display: none;
+}
+
+@media screen and (max-width:1016px){
+.resto-productoCarro{
+    display: unset;
+}
+.descripcionProductoCarro{
+    padding-left: 0;
+}
+.productoCarro p{
+    text-align: start;
+}
+.precioProductoCarro, .subtotal, .cantidadProductoCarro{
+    text-align: start;
+}
+.restarCantidadProducto{
+    margin-left: 0;
+}
+.carrito{
+    justify-content: center;
+}
 }
 
 @media screen and (max-width:834px) {
