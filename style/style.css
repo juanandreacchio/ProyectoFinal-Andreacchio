@@ -1274,4 +1274,14 @@ justify-content: center;
 max-width: 90%;
 margin: 10px;
 }
+.acciones-carito{
+    padding: 10px 0px;
+}
+.acciones-carito div button{
+    font-size: 13px;
+padding: 3px;
+}
+.div-precio-comprar p{
+    font-size: 13px;
+}
 }
