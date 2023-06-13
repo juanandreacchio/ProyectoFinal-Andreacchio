@@ -1372,7 +1372,25 @@ const botonCambiarMode = document.querySelector('.btnCambiarMode');
 const bodyDoc = document.querySelector('body');
 let select = document.querySelector("#ordenar");
 
-
+function ordenarProductos(criterio,productosAOrdenar){
+    switch (criterio) {
+        case 'precioMayor':
+            ordenarProductosPorPrecioMayorMenor(productosAOrdenar);
+            break;
+        case 'precioMenor':
+            ordenarProductosPorPrecioMenorMayor(productosAOrdenar);
+            break;
+        case 'alfabeticoAZ':
+            ordenaAlfabeticoAZ(productosAOrdenar);
+            break;
+        case 'alfabeticoZA':
+            ordenaAlfabeticoZA(productosAOrdenar);
+            break;
+        case 'Default':
+            cargarProductos(productosAOrdenar);
+            break;
+    }
+}
 
 function cargarProductos(productosElegidos) {
     contenedorProductos.innerHTML = "";
@@ -1433,23 +1451,7 @@ botonesCategoria.forEach(boton => {
             cargarProductos(productos);
             select.addEventListener('change', () => {
                 let opcionSeleccionada = select.value;
-                switch (opcionSeleccionada) {
-                    case 'precioMayor':
-                        ordenarProductosPorPrecioMayorMenor(productos);
-                        break;
-                    case 'precioMenor':
-                        ordenarProductosPorPrecioMenorMayor(productos);
-                        break;
-                    case 'alfabeticoAZ':
-                        ordenaAlfabeticoAZ(productos);
-                        break;
-                    case 'alfabeticoZA':
-                        ordenaAlfabeticoZA(productos);
-                        break;
-                    case 'Default':
-                        cargarProductos(productos);
-                        break;
-                }
+                ordenarProductos(opcionSeleccionada,productos);
             })
         }
         else {
@@ -1458,23 +1460,7 @@ botonesCategoria.forEach(boton => {
             select.value = "Default";
             select.addEventListener('change', () => {
                 let opcionSeleccionada = select.value;
-                switch (opcionSeleccionada) {
-                    case 'precioMayor':
-                        ordenarProductosPorPrecioMayorMenor(productosFiltrados);
-                        break;
-                    case 'precioMenor':
-                        ordenarProductosPorPrecioMenorMayor(productosFiltrados);
-                        break;
-                    case 'alfabeticoAZ':
-                        ordenaAlfabeticoAZ(productosFiltrados);
-                        break;
-                    case 'alfabeticoZA':
-                        ordenaAlfabeticoZA(productosFiltrados);
-                        break;
-                    case 'Default':
-                        cargarProductos(productosFiltrados);
-                        break;
-                }
+                ordenarProductos(opcionSeleccionada,productosFiltrados);
             })
         }
     })
