@@ -683,6 +683,12 @@ label {
     padding-top: 7px;
     font-weight: bold;
     color: #FF220C !important;
+    margin-bottom: 5px;
+}
+
+div.usuario > div,
+div.contrasenia > div{
+    margin-bottom: 10px !important;
 }
 
 .bienvenida{
@@ -762,15 +768,11 @@ label {
 
 .enviarRegistro>button:hover {
     background-color: #02182B;
-    border: 3px solid #68C5DB;
+    border: 2px solid #68C5DB;
     color: #68C5DB;
 }
 
-.enviarRegistro>button:active {
-    background-color: #1c1f1d;
-    border: 3px solid #2a2e2c;
-    color: rgb(86, 85, 85);
-}
+
 
 
 #olvideContrasenia>label {
@@ -1284,4 +1286,18 @@ padding: 3px;
 .div-precio-comprar p{
     font-size: 13px;
 }
+}
+
+.textoAzul{
+    padding-top: 7px;
+    font-weight: bold;
+    color: #101D42 !important;
+    margin-bottom: 5px;
+}
+
+.textBlancoOlvideContra{
+    padding-top: 7px;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 5px;
 }

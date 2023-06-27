@@ -12,6 +12,11 @@ let darkMode = localStorage.getItem('dark-mode');
 const botonCambiarMode = document.querySelector('.btnCambiarMode');
 const bodyDoc = document.querySelector('body');
 let select = document.querySelector("#ordenar");
+const inputBuscarProducto = document.querySelector('.input-buscarProd');
+const btnBuscarProd = document.querySelector('.btn-buscarProd');
+const btnTodos = document.querySelector('#todos');
+
+
 
 function ordenarProductos(criterio,productosAOrdenar){
     switch (criterio) {
@@ -59,6 +64,8 @@ function cargarProductos(productosElegidos) {
     })
     actualizarBotonesAgregar();
 }
+
+
 
 select.value = "Default";
 select.addEventListener('change', () => {
@@ -231,6 +238,35 @@ function ordenaAlfabeticoAZ(productosElegidos) {
     })
     cargarProductos(productosAux);
 }
+
+btnBuscarProd.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const busqueda = inputBuscarProducto.value.charAt(0).toUpperCase() + inputBuscarProducto.value.slice(1);
+    console.log(busqueda);
+const productosInclude = productos.filter(producto => producto.titulo.includes(busqueda));
+console.log(productosInclude);
+cargarProductos(productosInclude);
+select.value = "Default";
+select.addEventListener('change', () => {
+    let opcionSeleccionada = select.value;
+    ordenarProductos(opcionSeleccionada,productosInclude);
+})
+});
+
+inputBuscarProducto.addEventListener('keyup',()=>{
+    botonesCategoria.forEach(boton => boton.classList.remove('active'));
+    btnTodos.classList.add('active');
+    const busqueda = inputBuscarProducto.value.charAt(0).toUpperCase() + inputBuscarProducto.value.slice(1);
+    console.log(busqueda);
+const productosInclude = productos.filter(producto => producto.titulo.includes(busqueda));
+console.log(productosInclude);
+cargarProductos(productosInclude);
+select.value = "Default";
+select.addEventListener('change', () => {
+    let opcionSeleccionada = select.value;
+    ordenarProductos(opcionSeleccionada,productosInclude);
+})
+})
 
 
 

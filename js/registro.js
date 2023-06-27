@@ -9,18 +9,37 @@ let textoFailLogin = document.querySelector('.loginFail');
 let baseDeUsuarios;
 baseDeUsuariosLS = localStorage.getItem("Base-de-datos");
 baseDeUsuariosLS ? baseDeUsuarios = JSON.parse(baseDeUsuariosLS) : baseDeUsuarios = [];
+const inputEmail = document.querySelector('.inputEmail');
+console.log(baseDeUsuariosLS);
+function validarEmail(email) {
+    let formatoEmail = /\S+@\S+\.\S+/;
+    return formatoEmail.test(email);
+  }
 
 btnRegistrarse.addEventListener('click',() =>{
     if (inputUsuario.value == "" || inputPass.value == ""){
         textoFailLogin.classList.remove('none');
+        textoFailLogin.innerText = 'Debe completar todos los campos para registrarse'
+    }
+    else if(!validarEmail(inputEmail.value)){
+        textoFailLogin.classList.remove('none');
+        textoFailLogin.innerText = 'Ingrese un mail válido'
     }
     else
     {
         textoFailLogin.classList.add('none');
-        const nuevoUser = new User(inputUsuario.value,inputPass.value);
+        const nuevoUser = new User(inputEmail.value,inputUsuario.value,inputPass.value);
+        if(baseDeUsuarios.some(usuario => usuario.email === nuevoUser.email)){
+            textoFailLogin.classList.remove('none');
+            textoFailLogin.innerText = 'Ya hay un usuario registrado con ese mail pruebe con otro';
+        }
+        else if(baseDeUsuarios.some(usuario => usuario.usuario === nuevoUser.usuario)){
+            textoFailLogin.classList.remove('none');
+            textoFailLogin.innerText = 'Ya hay un usuario registrado con ese usuario pruebe con otro';
+        }
+        else{
         baseDeUsuarios.push(nuevoUser);
         localStorage.setItem("Base-de-datos",JSON.stringify(baseDeUsuarios));
-        console.log(baseDeUsuarios);
         darkMode = localStorage.getItem('dark-mode');
         if(darkMode === "desactivado"){
             Toastify({
@@ -56,13 +75,16 @@ btnRegistrarse.addEventListener('click',() =>{
             }
         inputPass.value = "";
         inputUsuario.value = "";
+        inputEmail.value = "";
     }
+}
 })
 
 console.log(baseDeUsuarios);
 
 
-function User(nombreUsuario, contraseña) {
+function User(email,nombreUsuario, contraseña) {
+    this.email = email
     this.nombreUsuario = nombreUsuario;
     this.contraseña = contraseña;
   }
