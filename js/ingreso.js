@@ -13,6 +13,8 @@ let ojo = document.querySelector('.ojo');
 let formContraseña = document.querySelector('.formContrasenia');
 let puedoVerContraseña = false;
 
+//ACTUALIZAR BOTONES
+
 function actualizarBotonCerrarSesion() {
     botonCerrarSesion = document.querySelector('.cerrarSesion')
 }
@@ -27,34 +29,9 @@ function actualizarInputsYBotones() {
     puedoVerContraseña = false;
 }
 
-function iniciarSesion() {
-    if (inputUsuario.value == "" || inputPass.value == "") {
-        textoFailLogin.classList.remove('none');
-    }
-    else {
-        textoFailLogin.classList.add('none');
-        if (baseDeUsuarios.some(usuario => inputUsuario.value === usuario.nombreUsuario && inputPass.value === usuario.contraseña)) {
-            boxIngresar.innerHTML = `
-            <p class="bienvenida">Bienvenido de nuevo ${inputUsuario.value}!</p>
-          <p class="ingreseAqui"><a href="../index.html">Ingrese aquí</a> para encontrar lo que estaba buscando!</p>
-          <button class="cerrarSesion">Cerrar sesión</button>
-            `
-            actualizarBotonCerrarSesion();
-            botonCerrarSesion.addEventListener('click', cerrarSesion);
-            const userLogeado = {
-                nombreUsuario: inputUsuario.value,
-                contraseña: inputPass.value
-            }
-            sessionStorage.setItem("logeado", true);
-            sessionStorage.setItem("usuarioLogeado", JSON.stringify(userLogeado));
 
-        }
-        else {
-            textoFailLogin.classList.remove('none');
-        }
-    }
-}
 
+//CERRAR SESION
 
 function cerrarSesion() {
     sessionStorage.setItem("logeado", false);
@@ -99,6 +76,36 @@ function cerrarSesion() {
     })
 }
 
+//INICIO DE SESIÓN
+
+function iniciarSesion() {
+    if (inputUsuario.value == "" || inputPass.value == "") {
+        textoFailLogin.classList.remove('none');
+    }
+    else {
+        textoFailLogin.classList.add('none');
+        if (baseDeUsuarios.some(usuario => inputUsuario.value === usuario.nombreUsuario && inputPass.value === usuario.contraseña)) {
+            boxIngresar.innerHTML = `
+            <p class="bienvenida">Bienvenido de nuevo ${inputUsuario.value}!</p>
+          <p class="ingreseAqui"><a href="../index.html">Ingrese aquí</a> para encontrar lo que estaba buscando!</p>
+          <button class="cerrarSesion">Cerrar sesión</button>
+            `
+            actualizarBotonCerrarSesion();
+            botonCerrarSesion.addEventListener('click', cerrarSesion);
+            const userLogeado = {
+                nombreUsuario: inputUsuario.value,
+                contraseña: inputPass.value
+            }
+            sessionStorage.setItem("logeado", true);
+            sessionStorage.setItem("usuarioLogeado", JSON.stringify(userLogeado));
+
+        }
+        else {
+            textoFailLogin.classList.remove('none');
+        }
+    }
+}
+
 if (estaLogeadoSS) {
     if (estaLogeadoSS === 'true') {
         let usuarioSS = JSON.parse(sessionStorage.getItem("usuarioLogeado"));
@@ -130,6 +137,8 @@ ojo.addEventListener('click', function () {
         puedoVerContraseña = false;
     }
 })
+
+//DARK MODE
 
 function activarDarkMode() {
     localStorage.setItem('dark-mode', "activado");

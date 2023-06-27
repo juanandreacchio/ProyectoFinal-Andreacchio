@@ -28,6 +28,8 @@ else{
 }
 })
 
+//DARK MODE
+
 function activarDarkMode() {
     localStorage.setItem('dark-mode', "activado");
     bodyDoc.classList.add('dark-mode');

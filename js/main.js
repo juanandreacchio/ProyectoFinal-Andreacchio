@@ -18,25 +18,9 @@ const btnTodos = document.querySelector('#todos');
 
 
 
-function ordenarProductos(criterio,productosAOrdenar){
-    switch (criterio) {
-        case 'precioMayor':
-            ordenarProductosPorPrecioMayorMenor(productosAOrdenar);
-            break;
-        case 'precioMenor':
-            ordenarProductosPorPrecioMenorMayor(productosAOrdenar);
-            break;
-        case 'alfabeticoAZ':
-            ordenaAlfabeticoAZ(productosAOrdenar);
-            break;
-        case 'alfabeticoZA':
-            ordenaAlfabeticoZA(productosAOrdenar);
-            break;
-        case 'Default':
-            cargarProductos(productosAOrdenar);
-            break;
-    }
-}
+
+
+//CARGAR PRODUCTOS AL HTML
 
 function cargarProductos(productosElegidos) {
     contenedorProductos.innerHTML = "";
@@ -65,7 +49,27 @@ function cargarProductos(productosElegidos) {
     actualizarBotonesAgregar();
 }
 
+// ORDENAR PRODUCTOS
 
+function ordenarProductos(criterio,productosAOrdenar){
+    switch (criterio) {
+        case 'precioMayor':
+            ordenarProductosPorPrecioMayorMenor(productosAOrdenar);
+            break;
+        case 'precioMenor':
+            ordenarProductosPorPrecioMenorMayor(productosAOrdenar);
+            break;
+        case 'alfabeticoAZ':
+            ordenaAlfabeticoAZ(productosAOrdenar);
+            break;
+        case 'alfabeticoZA':
+            ordenaAlfabeticoZA(productosAOrdenar);
+            break;
+        case 'Default':
+            cargarProductos(productosAOrdenar);
+            break;
+    }
+}
 
 select.value = "Default";
 select.addEventListener('change', () => {
@@ -88,6 +92,51 @@ select.addEventListener('change', () => {
             break;
     }
 })
+
+//METODOS ORDENAMIENTO
+
+function ordenarProductosPorPrecioMayorMenor(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => b.precio - a.precio);
+    cargarProductos(productosAux);
+}
+
+function ordenarProductosPorPrecioMenorMayor(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => a.precio - b.precio);
+    cargarProductos(productosAux);
+}
+
+function ordenaAlfabeticoZA(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => {
+        if (a.titulo < b.titulo) {
+            return 1;
+        }
+        if (a.titulo > b.titulo) {
+            return -1;
+        }
+        return 0;
+    })
+    cargarProductos(productosAux);
+}
+
+
+function ordenaAlfabeticoAZ(productosElegidos) {
+    const productosAux = [...productosElegidos];
+    productosAux.sort((a, b) => {
+        if (a.titulo < b.titulo) {
+            return -1;
+        }
+        if (a.titulo > b.titulo) {
+            return 1;
+        }
+        return 0;
+    })
+    cargarProductos(productosAux);
+}
+
+//CATEGORIA DE PRODUCTOS
 
 botonesCategoria.forEach(boton => {
     boton.addEventListener('click', (e) => {
@@ -114,6 +163,7 @@ botonesCategoria.forEach(boton => {
     })
 })
 
+//DARK MODE
 
 !darkMode && localStorage.setItem('dark-mode',"desactivado");
 darkMode === "activado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>')
@@ -137,6 +187,8 @@ botonCambiarMode.addEventListener('click', () => {
     darkMode === "activado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>')
     darkMode === "desactivado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>');
 });
+
+//AGREGAR PRODUCTOS
 
 function actualizarBotonesAgregar() {
     botonesAgregar = document.querySelectorAll('.agregarCarrito');
@@ -198,50 +250,14 @@ function agregarAlCarrito(e) {
 }
 
 
-function ordenarProductosPorPrecioMayorMenor(productosElegidos) {
-    const productosAux = [...productosElegidos];
-    productosAux.sort((a, b) => b.precio - a.precio);
-    cargarProductos(productosAux);
-}
-
-function ordenarProductosPorPrecioMenorMayor(productosElegidos) {
-    const productosAux = [...productosElegidos];
-    productosAux.sort((a, b) => a.precio - b.precio);
-    cargarProductos(productosAux);
-}
-
-function ordenaAlfabeticoZA(productosElegidos) {
-    const productosAux = [...productosElegidos];
-    productosAux.sort((a, b) => {
-        if (a.titulo < b.titulo) {
-            return 1;
-        }
-        if (a.titulo > b.titulo) {
-            return -1;
-        }
-        return 0;
-    })
-    cargarProductos(productosAux);
-}
 
 
-function ordenaAlfabeticoAZ(productosElegidos) {
-    const productosAux = [...productosElegidos];
-    productosAux.sort((a, b) => {
-        if (a.titulo < b.titulo) {
-            return -1;
-        }
-        if (a.titulo > b.titulo) {
-            return 1;
-        }
-        return 0;
-    })
-    cargarProductos(productosAux);
-}
+//BUSCAR PRODUCTOS
 
 btnBuscarProd.addEventListener('click',(e)=>{
     e.preventDefault();
-    const busqueda = inputBuscarProducto.value.charAt(0).toUpperCase() + inputBuscarProducto.value.slice(1);
+    let busqueda = inputBuscarProducto.value.toLowerCase();
+    busqueda = busqueda.charAt(0).toUpperCase() + busqueda.slice(1);
 const productosInclude = productos.filter(producto => producto.titulo.includes(busqueda));
 cargarProductos(productosInclude);
 select.value = "Default";
@@ -254,7 +270,8 @@ select.addEventListener('change', () => {
 inputBuscarProducto.addEventListener('keyup',()=>{
     botonesCategoria.forEach(boton => boton.classList.remove('active'));
     btnTodos.classList.add('active');
-    const busqueda = inputBuscarProducto.value.charAt(0).toUpperCase() + inputBuscarProducto.value.slice(1);
+    let busqueda = inputBuscarProducto.value.toLowerCase();
+    busqueda = busqueda.charAt(0).toUpperCase() + busqueda.slice(1);
 const productosInclude = productos.filter(producto => producto.titulo.includes(busqueda));
 cargarProductos(productosInclude);
 select.value = "Default";

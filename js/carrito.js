@@ -30,39 +30,7 @@ const containerDireccion = document.querySelector('.direccion');
 const containerBtnComprar = document.querySelector('.botonComprar');
 const btnVolver = document.querySelector('.volver')
 
-/*
 
-            <img src="https://res.cloudinary.com/dmiy7cyjx/image/upload/v1683134072/CursoJS/camisetasNBA/camisetaNOLA_cmfcnm.png" alt="${producto.titulo}" srcset="" style="width: 85px; height: 85px;">
-          </div>
-
-            <div class="descripcionProductoCarro">
-              <small>Producto</small>
-              <p>
-                Men's New Orleans Pelicans Zion Williamson Nike Navy 2020/21 Swingman Jersey - Icon Edition
-              </p>
-            </div>
-            <div class="cantidadProductoCarro">
-              <small>Cantidad</small>
-              <p>
-                <button class="restarCantidadProducto" id="${producto.id}">-</button> 1 <button class="aumentarCantidadProducto" id="${producto.id}">+</button>
-              </p>
-            </div>
-            <div class="precioProductoCarro">
-              <small>Precio</small>
-              <p>$94.99</p>
-            </div>
-            <div class="subtotal">
-              <small>Subtotal</small>
-              <p>
-                $94.99
-              </p>
-            </div>
-            <button class="eliminarProductoCarro" id="${producto.id}">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-          </div>
-*/
 
  function cargarProductosAlCarro(){
    if(productosEnCarrito && productosEnCarrito.length > 0){
@@ -122,6 +90,7 @@ const btnVolver = document.querySelector('.volver')
 
  cargarProductosAlCarro();
 
+// DARK MODE//
 
 !darkMode && localStorage.setItem('dark-mode',"desactivado");
 darkMode === "activado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>')
@@ -139,8 +108,15 @@ function desactivarDarkMode(){
     bodyDoc.classList.remove('dark-mode');
 }
 
+botonCambiarMode.addEventListener('click', () =>{
+  darkMode = localStorage.getItem('dark-mode');
+  darkMode === "activado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>')
+  darkMode === "desactivado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>');
+});
 
 
+
+// ACTUALIZACIÓN DE BOTONES
  function actualizaBotonesDeEliminar (){
    botonesEliminar = document.querySelectorAll('.eliminarProductoCarro');
    botonesEliminar.forEach(boton =>{
@@ -166,6 +142,8 @@ function desactivarDarkMode(){
      boton.addEventListener('click',aumentarCantidad);
    })
  }
+
+//ACCIONES PRODUCTOS-CARRITO
 
  function aumentarCantidad (e){
    const idBoton = e.currentTarget.id;
@@ -247,17 +225,11 @@ function desactivarDarkMode(){
    }
  }
 
-botonCambiarMode.addEventListener('click', () =>{
-    darkMode = localStorage.getItem('dark-mode');
-    darkMode === "activado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>')
-    darkMode === "desactivado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>');
-});
+
+
+//FINALIZAR COMPRA
 
 btnFinalizarCompra.addEventListener('click', () =>{
-
-
-
-
 carritoVacio.classList.add('none');
 containerProductos.classList.add('none');
 containerAccionesCarrito.classList.add('none');
@@ -342,6 +314,7 @@ Swal.fire({
 })
 
 })
+
 
 
 

@@ -15,6 +15,8 @@ function validarEmail(email) {
     return formatoEmail.test(email);
   }
 
+//REGISTRO
+
 btnRegistrarse.addEventListener('click',() =>{
     if (inputUsuario.value == "" || inputPass.value == ""){
         textoFailLogin.classList.remove('none');
@@ -80,12 +82,13 @@ btnRegistrarse.addEventListener('click',() =>{
 })
 
 
-
 function User(email,nombreUsuario, contraseña) {
     this.email = email
     this.nombreUsuario = nombreUsuario;
     this.contraseña = contraseña;
   }
+
+//DARK MODE
 
 function activarDarkMode() {
     localStorage.setItem('dark-mode', "activado");
@@ -109,6 +112,8 @@ botonCambiarMode.addEventListener('click', () =>{
     darkMode === "activado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>')
     darkMode === "desactivado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>');
 });
+
+//OJO FORM CONTRASEÑA
 
 const ojo = document.querySelector('.ojo');
 
