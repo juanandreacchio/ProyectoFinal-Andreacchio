@@ -4,7 +4,6 @@ let darkMode = localStorage.getItem('dark-mode');
 const carritoVacio = document.querySelector('.carritoEmpty');
 const containerProductos = document.querySelector('.productosCarrito');
 const botonCambiarMode = document.querySelector('.btnCambiarMode');
-console.log(botonCambiarMode);
 let botonesEliminar = document.querySelectorAll('.eliminarProductoCarro');
 const bodyDoc = document.querySelector('body');
 let botonesAumentarCantidad = document.querySelectorAll('.aumentarCantidadProducto');
@@ -140,7 +139,7 @@ function desactivarDarkMode(){
     bodyDoc.classList.remove('dark-mode');
 }
 
- console.log(botonCambiarMode.innerHTML);
+
 
  function actualizaBotonesDeEliminar (){
    botonesEliminar = document.querySelectorAll('.eliminarProductoCarro');
@@ -170,7 +169,6 @@ function desactivarDarkMode(){
 
  function aumentarCantidad (e){
    const idBoton = e.currentTarget.id;
-   console.log(idBoton);
    const indice = productosEnCarrito.findIndex(producto => producto.id === idBoton);
    productosEnCarrito[indice].cantidad++;
    cargarProductosAlCarro();
@@ -179,7 +177,6 @@ function desactivarDarkMode(){
 
  function disminuirCantidad (e){
    const idBoton = e.currentTarget.id;
-   console.log(idBoton);
    const indice = productosEnCarrito.findIndex(producto => producto.id === idBoton);
    productosEnCarrito[indice].cantidad = productosEnCarrito[indice].cantidad - 1;
    productosEnCarrito[indice].cantidad === 0 && productosEnCarrito.splice(indice,1);

@@ -70,7 +70,6 @@ function cargarProductos(productosElegidos) {
 select.value = "Default";
 select.addEventListener('change', () => {
     let opcionSeleccionada = select.value;
-    console.log(opcionSeleccionada);
     switch (opcionSeleccionada) {
         case 'precioMayor':
             ordenarProductosPorPrecioMayorMenor(productos);
@@ -92,6 +91,7 @@ select.addEventListener('change', () => {
 
 botonesCategoria.forEach(boton => {
     boton.addEventListener('click', (e) => {
+        inputBuscarProducto.value = "";
         botonesCategoria.forEach(boton => boton.classList.remove('active'));
         e.currentTarget.classList.add('active');
         if (e.currentTarget.id === 'todos') {
@@ -242,9 +242,7 @@ function ordenaAlfabeticoAZ(productosElegidos) {
 btnBuscarProd.addEventListener('click',(e)=>{
     e.preventDefault();
     const busqueda = inputBuscarProducto.value.charAt(0).toUpperCase() + inputBuscarProducto.value.slice(1);
-    console.log(busqueda);
 const productosInclude = productos.filter(producto => producto.titulo.includes(busqueda));
-console.log(productosInclude);
 cargarProductos(productosInclude);
 select.value = "Default";
 select.addEventListener('change', () => {
@@ -257,9 +255,7 @@ inputBuscarProducto.addEventListener('keyup',()=>{
     botonesCategoria.forEach(boton => boton.classList.remove('active'));
     btnTodos.classList.add('active');
     const busqueda = inputBuscarProducto.value.charAt(0).toUpperCase() + inputBuscarProducto.value.slice(1);
-    console.log(busqueda);
 const productosInclude = productos.filter(producto => producto.titulo.includes(busqueda));
-console.log(productosInclude);
 cargarProductos(productosInclude);
 select.value = "Default";
 select.addEventListener('change', () => {

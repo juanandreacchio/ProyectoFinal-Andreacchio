@@ -42,7 +42,7 @@ function desactivarDarkMode() {
 darkMode === "activado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>')
 darkMode === "desactivado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>');
 
-console.log(botonCambiarMode.innerHTML);
+
 
 
 

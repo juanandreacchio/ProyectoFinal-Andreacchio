@@ -1,6 +1,5 @@
 let darkMode = localStorage.getItem('dark-mode');
 const botonCambiarMode = document.querySelector('.btnCambiarMode');
-console.log(botonCambiarMode);
 const bodyDoc = document.querySelector('body');
 const inputUsuario = document.querySelector('.inputEnviar');
 const inputPass = document.querySelector('.formContrasenia');
@@ -10,7 +9,7 @@ let baseDeUsuarios;
 baseDeUsuariosLS = localStorage.getItem("Base-de-datos");
 baseDeUsuariosLS ? baseDeUsuarios = JSON.parse(baseDeUsuariosLS) : baseDeUsuarios = [];
 const inputEmail = document.querySelector('.inputEmail');
-console.log(baseDeUsuariosLS);
+
 function validarEmail(email) {
     let formatoEmail = /\S+@\S+\.\S+/;
     return formatoEmail.test(email);
@@ -80,7 +79,6 @@ btnRegistrarse.addEventListener('click',() =>{
 }
 })
 
-console.log(baseDeUsuarios);
 
 
 function User(email,nombreUsuario, contraseña) {
@@ -103,7 +101,6 @@ function desactivarDarkMode() {
 darkMode === "activado" && (activarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-moon"></i>')
 darkMode === "desactivado" && (desactivarDarkMode(),botonCambiarMode.innerHTML = '<i class="fa-solid fa-sun"></i>');
 
-console.log(botonCambiarMode.innerHTML);
 
 
 
@@ -114,10 +111,8 @@ botonCambiarMode.addEventListener('click', () =>{
 });
 
 const ojo = document.querySelector('.ojo');
-console.log(ojo);
+
 let formContraseña = document.querySelector('.formContrasenia')
-console.log(formContraseña.attributes.type);
-console.log(ojo.children);
 let puedoVerContraseña = false;
 ojo.addEventListener('click', function () {
     if (!puedoVerContraseña) {
