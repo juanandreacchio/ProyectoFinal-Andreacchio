@@ -34,7 +34,7 @@ btnRegistrarse.addEventListener('click',() =>{
             textoFailLogin.classList.remove('none');
             textoFailLogin.innerText = 'Ya hay un usuario registrado con ese mail pruebe con otro';
         }
-        else if(baseDeUsuarios.some(usuario => usuario.usuario === nuevoUser.usuario)){
+        else if(baseDeUsuarios.some(usuario => usuario.nombreUsuario === nuevoUser.nombreUsuario)){
             textoFailLogin.classList.remove('none');
             textoFailLogin.innerText = 'Ya hay un usuario registrado con ese usuario pruebe con otro';
         }
